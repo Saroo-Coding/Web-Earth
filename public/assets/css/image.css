@@ -1,0 +1,263 @@
+
+h3{
+    font-size: 20px;
+    color: var(--color-color);
+}
+.info-cols{
+    flex-basis: 100%;
+}
+.profile-image{
+    background: var(--bg-color);
+    padding: 20px;
+}
+.tabs.active{
+    display: block;
+}
+.tabs{
+    display: none;
+    position: relative;
+}
+.tab_img li.active{
+    border-bottom: 2px solid salmon ;
+    color: salmon;
+}
+.tab_img{
+    cursor: pointer;
+    display: flex;
+    margin-top: 25px;
+}
+.tab_img li {
+    color: var(--color-color);
+    margin-left: 15px;
+    padding: 10px 10px;
+}
+.tabcontent{
+    display: grid;
+    grid-template-columns:  repeat(5, auto);
+    grid-gap:10px;
+}
+.tabcontent div img{
+    object-fit: contain;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.div-image{
+    width: 180px;
+    height: 180px;
+}
+.div-image {
+    position: relative;
+}
+.div-image .edit{
+    position: absolute;
+    font-size: 25px;
+    color: #fff;
+    top: 10px;
+    right: 12px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.edit_img{
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background: var(--bg-color);
+    width: 200px;
+    padding: 15px 15px;
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--color-color);
+    font-size: 15px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    display: none;
+}
+.edit_img li{
+    padding: 5px 5px;
+}
+.edit_img li i{
+    width: 20px;
+}
+.edit_img li:hover{
+    background: var(--body-color);
+    border-radius: 5px;
+}
+.edit:hover .edit_img {
+    display: block;
+} 
+
+.albums{
+    margin-bottom: 35px;
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+.albums img{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    object-fit: contain;
+}
+.albums p {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 8px 0;
+    color: var(--color-color);
+}
+.albums .add_ablums{
+    width: 180px;
+    height: 180px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    border: 1px solid var(--color-color);
+}
+.albums i {
+    position: absolute;
+    top: 39%;
+    right: 44%;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--color-color);
+}
+/* Full-width input fields */
+#addalbums {
+    cursor: pointer;
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 3px;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+#file_albums::-webkit-file-upload-button {
+    visibility: hidden;
+}
+#file_albums::before {
+    content: 'Upload photos or albums';
+    display: inline-block;
+    border: 1px solid #999;
+    border-radius: 5px;
+    outline: none;
+    width: 89.7%;
+    white-space: nowrap;
+    padding: 12px 20px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+}
+#file_albums:hover::before {
+    border-color: black;
+}
+#file_albums:active{
+    outline: 0;
+}
+
+  /* Set a style for all buttons */
+.post_albums {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+
+}
+.modal-content h2{
+    margin-top: 15px;
+    text-align: center;
+}
+.post_albums:hover {
+    opacity: 0.8;
+}
+  
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: 20%;
+    padding: 10px 18px;
+    background-color: #1f1f1f;
+    border: 1px solid #fff;
+    color: #edf2fc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.container_albums.cancel{
+    display: flex;
+    justify-content:flex-end;
+}
+.container_albums {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+  
+/* The Modal (background) */
+.modalalbums {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+}
+  
+  /* Modal Content/Box */
+.modal-content {
+    color: var(--color-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 30%;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+  
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+  
+  /* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+        width: 50%;
+
+    }
+}

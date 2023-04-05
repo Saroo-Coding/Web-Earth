@@ -1,0 +1,397 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+}
+ul{
+    list-style: none;
+}
+:root{
+    --body-color: #efefef;
+    --nav-color:#1846f2;
+    --bg-color:#fff;
+    --color-color: #000;
+    --header-color:salmon;
+}
+.dark-theme{
+    --body-color: #0a0a0a;
+    --nav-color:#000;
+    --bg-color:#191919;
+    --color-color:#fff;
+    --header-color:rgb(153, 43, 31);
+}
+body{
+    text-decoration: none;
+    width: 100%; 
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--header-color);
+    padding: 5px 5%;
+    position:fixed;
+    /* position: sticky; */
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+h1{
+    font-size: 35px;
+    margin-right: 45px;
+    cursor: pointer;
+    color: #fff;
+}
+/* NAV LEFT */
+.nav-left , .nav-right{
+    display: flex;
+    align-items: center;
+}
+.nav-left ul li{
+    display: inline-block;
+}
+.nav-left ul li i{
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0px 10px;
+
+}
+.nav-left i{
+    width: 37px;
+    background: #fff;
+    padding: 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: salmon;
+}
+
+/* NAV RIGHT */
+.nav-user-icon img{
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.nav-user-icon{
+    margin-left: 30px;
+}
+.search-box{
+    width: 350px;
+    background: #efefef;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+.search-box i{
+    width: 18px;
+    color:dimgray;
+    cursor: pointer;
+}
+.search-box input{
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+.online{
+    position: relative;
+}
+.online::after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #41db51;
+    position: absolute;
+    top: 0;
+    right: 1px;
+}
+.messenger-menu{
+    position: absolute;
+    width: 90%;
+    max-width: 300px;
+    background: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+    max-width: 0;
+    /* transition: max-width 0.3s;
+    border-bottom: 5px solid salmon; */
+}
+.messenger-menu-height{
+    max-width: 300px;
+}
+.container-ms{
+    padding: 15px 25px;
+}
+#search-messenger{
+    width: 100%;
+    background: #efefef;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+#search-messenger button i{
+    font-size: 15px;
+}
+#search-messenger input{
+    width: 80%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+#search-messenger #search-btn{
+    background-color: #efefef;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+}
+#search-messenger #search-btn i{
+    width: 18px;
+    color:dimgray;
+    background: #efefef;
+}
+.messenger-menu-inner{
+    margin-top: 35px;
+    height: 485px;
+    overflow: auto;
+    color: var(--color-color);
+}
+.messenger-menu-inner::-webkit-scrollbar{
+    /* width: 0 !important;
+    display: none; */
+    width:  7px;
+}
+.messenger-menu-inner::-webkit-scrollbar-thumb {
+    background-color: salmon;
+    border-radius: 5px;
+}
+.messenger-menu-inner .online{
+    position: relative;
+}
+.messenger-menu-inner .online::after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #41db51;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+.messenger-menu-inner .online-list{
+    display: flex;
+    align-items:center ;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+}
+.messenger-menu-inner .online-list .online img{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid salmon;
+}
+.messenger-menu-inner .online-list .online {
+    margin-right: 15px;
+}
+.messenger-menu-inner .online-list .des {
+    white-space: nowrap; 
+    width: 150px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: var(--color-color);
+    /* border: 1px solid #000000; */
+}
+.messenger-menu-inner .online-list .des p{
+    margin-top: 3px;
+    font-size: 14px;
+}
+.messenger-menu-inner .online-list .des h5{
+    font-size: 16px;
+}
+/* settings-menu -------------------------------- */
+.settings-menu{
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 97%;
+    right: 5%;
+    max-height: 0;
+    /* transition: max-height 0.3s; */
+}
+.settings-menu-height{
+    max-height: 450px;
+}
+.user-profile{
+    margin-top: 7px;
+}
+.user-profile a .name-profile{
+    font-size: 16px;
+}
+.user-profile a{
+    font-size: 12px;
+    color: salmon;
+    text-decoration: none;
+}
+.settings-menu-inner .user-profile img{
+    width: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.settings-menu .user-profile i {
+    margin-right: 10px;
+    width: 36px;
+    background:salmon;
+    border-radius: 50%;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+}
+
+.fa-gear, 
+.fa-circle-question, 
+.fa-moon, 
+.fa-right-from-bracket{
+    margin-right: 10px;
+    width: 36px;
+    background:salmon;
+    border-radius: 50%;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+}
+.settings-menu-inner{
+    padding: 20px;
+}
+.settings-menu hr {
+    border: 0;
+    height: 1px;
+    background: #9a9a9a;
+    margin: 15px 0;
+}
+.settings-links {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+
+}
+.settings-links a{
+    display: flex;
+    flex:1 ;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--color-color);
+}
+#dark-btn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: salmon;
+    width: 45px;
+    border-radius: 15px;
+    padding: 2px 3px;
+    cursor: pointer;
+    display: flex;
+    transition: padding-left 0.5s, background 0.5s;
+}
+#dark-btn span {
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+#dark-btn.dark-btn-on{
+    padding-left: 23px;
+    background: rgb(153, 43, 31);
+
+}
+
+
+/*  notification */
+.notification-menu{
+    position: absolute;
+    width: 90%;
+    max-width: 300px;
+    background: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 100%;
+    left: 0;
+    max-width: 0;
+    /* transition: max-width 0.3s; */
+    /* border-bottom: 5px solid salmon; */
+}
+.notification-menu-height{
+    max-width: 300px;
+}
+.notification-menu-inner {
+    margin-top: 35px;
+    height: 520px;
+    overflow: auto;
+    color: var(--color-color);
+}
+.notification-menu-inner::-webkit-scrollbar{
+    width:  7px;
+}
+.notification-menu-inner::-webkit-scrollbar-thumb {
+    background-color: rgb(248, 162, 152);
+    border-radius: 5px;
+}
+.notification-menu-inner .online-list p .name-post{
+    font-size: 15px;
+    font-weight: 600;
+}
+.notification-menu-inner .online-list .dess{
+    width: 160px;
+    height: 40px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.notification-menu-inner .online-list p span .name{
+    font-weight: 600;
+    color: var(--color-color);
+    text-decoration: none;
+}
+.notification-menu-inner .online::after{
+    display: none;
+}
+.notification-menu-inner .notifications h3{
+    margin-bottom: 5px;
+}
+.notification-menu-inner .notifications .news{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid salmon;
+    margin-bottom: 12px;
+    margin-right: 10px;
+}
+.notification-menu-inner .notifications .news a{
+    text-decoration: none;
+    color: salmon;
+}
