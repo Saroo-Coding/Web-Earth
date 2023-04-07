@@ -10,13 +10,13 @@
                 <div class="wrapper_intro">
                     <h3>Introduce</h3>
                     <div class="app_content_intro">
-                        @if ($user['userId'] == $_COOKIE['user'])
+                        @if ($pro_user['userId'] == $_COOKIE['user'])
                             <ul class="tabs_intro">
                                 <li data-target="#content_1_intro">
-                                    <p>Overview</p>
+                                    <p>Xem trước</p>
                                 </li>
                                 <li data-target="#content_2_intro">
-                                    <p>Edit</p>
+                                    <p>Chỉnh sửa</p>
                                 </li>
                             </ul>
                         @endif

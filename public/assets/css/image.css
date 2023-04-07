@@ -24,11 +24,9 @@ h3{
 .tab_img{
     cursor: pointer;
     display: flex;
-    margin-top: 25px;
 }
 .tab_img li {
     color: var(--color-color);
-    margin-left: 15px;
     padding: 10px 10px;
 }
 .tabcontent{

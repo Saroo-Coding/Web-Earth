@@ -8,19 +8,15 @@
         <div class="info-cols">
             <!-- image -->
             <div class="profile-image">
-                <div class="title-image">
-                    <h3>Image</h3>
-                </div>
                 <ul class="tab_img">
                     <li data-target="#content_1">
-                        <p>Your picture</p>
+                        <h3>Ảnh</h3>
                     </li>
-                    <li data-target="#content_2">
-                        <p>Your Albums</p>
+                    <li style="margin-left: 15px;" data-target="#content_2">
+                        <h3>Album</h3>
                     </li>
                 </ul>
                 {{-- image cua ban --}}
-
                 <div class="tabs active" id="content_1">
                     <div class="tabcontent">
                         @foreach ($post as $item)
@@ -31,8 +27,8 @@
                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                         <div class="edit_img">
                                             <ul class="dropdown-menu">
-                                                <li><i class="fa-solid fa-trash-can"></i>Delete photos</li>
-                                                <li><i class="fa-solid fa-user"></i>Set as Avatar</li>
+                                                <li><i class="fa-solid fa-trash-can"></i>Xóa ảnh</li>
+                                                <li><i class="fa-solid fa-user"></i>Đặt làm avatar</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -46,8 +42,8 @@
                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                         <div class="edit_img">
                                             <ul class="dropdown-menu">
-                                                <li><i class="fa-solid fa-trash-can"></i>Delete photos</li>
-                                                <li><i class="fa-solid fa-user"></i>Set as Avatar</li>
+                                                <li><i class="fa-solid fa-trash-can"></i>Xóa ảnh</li>
+                                                <li><i class="fa-solid fa-user"></i>Đặt làm avatar</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -61,8 +57,8 @@
                                         <i class="fa-solid fa-ellipsis-vertical"></i>
                                         <div class="edit_img">
                                             <ul class="dropdown-menu">
-                                                <li><i class="fa-solid fa-trash-can"></i>Delete photos</li>
-                                                <li><i class="fa-solid fa-user"></i>Set as Avatar</li>
+                                                <li><i class="fa-solid fa-trash-can"></i>Xóa ảnh</li>
+                                                <li><i class="fa-solid fa-user"></i>Đặt làm avatar</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -81,17 +77,17 @@
                         <div class="albums">
                             <div class="add_ablums" onclick="document.getElementById('id01').style.display='block'"> <i
                                     class="fa-solid fa-plus"></i></div>
-                            <p class="name">Add albums</p>
+                            <p class="name">Thêm albums</p>
                             {{-- add --}}
                         </div>
                         <div id="id01" class="modalalbums">
                             <form class="modal-content animate" action="" method="get">
                                 <h2>Add albums</h2>
                                 <div class="container_albums">
-                                    <label for="addalbums"><b>Albums name</b></label>
+                                    <label for="addalbums"><b>Tên albums</b></label>
                                     <input type="text" name="addalbums" id="addalbums">
                                     <input type="file" name="file" id="file_albums">
-                                    <button type="submit" class="post_albums">Post albums</button>
+                                    <button type="submit" class="post_albums">Đăng</button>
                                 </div>
                                 <div class="container_albums cancel">
                                     <button type="button" onclick="document.getElementById('id01').style.display='none'"

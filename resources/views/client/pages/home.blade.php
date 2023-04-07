@@ -11,7 +11,7 @@
                     <img src="{{ $user['avatar'] }}">{{ $user['fullName'] }}
                 </a>
                 <a href="{{ route('friend', $user['userId']) }}">
-                    <i class="fa-solid fa-user-group "></i> Friends
+                    <i class="fa-solid fa-user-group "></i> Bạn bè
                 </a>
                 <a href="#">
                     <i class="fa-solid fa-gamepad"></i> Games
@@ -20,12 +20,12 @@
                     <i class="fa-solid fa-shop"></i> Marketplace
                 </a>
                 <a href="#">
-                    See More
+                    Xem thêm
                 </a>
             </div>
             <!-- shortcut -->
             <div class="shortcut-links">
-                <p>All Groups</p>
+                <p>Nhóm</p>
                 <a href="#">
                     <img src="{{ asset('img/web-developer.jpg') }}" alt=""> Web Developers
                 </a>
@@ -36,7 +36,7 @@
                     <img src="{{ asset('img/FullStack.png') }}" alt=""> Full Stack
                 </a>
                 <a href="#" class="all-groups">
-                    See all groups
+                    Danh sách nhóm
                 </a>
             </div>
         </div>
@@ -49,8 +49,8 @@
         <!-- ----------------right-sidebar------------ -->
         <div class="right-sidebar">
             <div class="sidebar-title">
-                <h4>Friend request</h4>
-                <a href="#">See All</a>
+                <h4>Yêu cầu kết bạn</h4>
+                <a href="#">Xem</a>
             </div>
             @foreach ($friend_req as $item)
                 <div class="add-sidebar-title">
@@ -70,7 +70,7 @@
             <div class="hr"></div>
             <!-- ---- -->
             <div class="sidebar-title">
-                <h4>Friends</h4>
+                <h4>Online</h4>
                 <div class="sidebar-search">
                     <div id="search-messenger">
                         <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -90,26 +90,6 @@
                     <p>Alison Mina</p>
                 </div>
                 {{-- end bản chính --}}
-                {{-- text xoa cai nay --}}
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{ asset('img/img-2.jpg') }}" alt="">
-                    </div>
-                    <p>Jackson</p>
-                </div>
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{ asset('img/img-2.jpg') }}" alt="">
-                    </div>
-                    <p>Ned</p>
-                </div>
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{ asset('img/img-2.jpg') }}" alt="">
-                    </div>
-                    <p>Ned</p>
-                </div>
-                {{-- end text xoa cai nay --}}
             </div>
         </div>
     </div>

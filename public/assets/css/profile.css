@@ -81,7 +81,7 @@ body{
 
 }
 .pd-right button{
-    background: salmon;
+    background: #1876f2;
     border: 0;
     outline: 0;
     padding: 6px 10px;
@@ -99,10 +99,6 @@ body{
 .pd-right button i {
     margin-right: 7px;
     font-size: 15px;
-}
-.pd-right button:first-child {
-    background: #e4e6ed;
-    color: #000;
 }
 .pd-right{
     text-align: right;

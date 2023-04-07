@@ -1,4 +1,4 @@
-@if ($user['userId'] == $_COOKIE['user'])
+@if ($pro_user['userId'] == $_COOKIE['user'])
     <div class="write-post-container">
         <div class="user-profile">
             <a href="{{ route('profile', $user['userId']) }}"><img id="user_img" src="{{ $user['avatar'] }}"></a>
@@ -20,17 +20,12 @@
             </div>
         </div>
         <div class="post-input-container">
-            <textarea name="content" id="content" rows="3" placeholder="What's on your mind, {{ $user['fullName'] }}?"></textarea>
+            <textarea name="content" id="content" rows="3" placeholder="What's on your mind, {{ $pro_user['fullName'] }}?"></textarea>
             <img style="width: 100%;height: 100%;" id="preview_1">
             <div class="add-post-links">
                 <a href="#"><i class="fa-solid fa-video"></i> Live video </a>
-                {{-- <a href="#"><i class="fa-solid fa-camera"></i> Photo/Video </a> --}}
                 <div style="margin-top: 3px;margin-right: 30px;" class="image-upload">
-                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i>
-                        Photo/Video</label>
-                    <input style="display: none" name="file" id="file" type="file" />
-                </div>
-                {{--  --}}
+                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i>Photo/Video</label></div>
                 <a href="#"><i class="fa-regular fa-face-laugh"></i> Feling/Activity </a>
                 <button type="button" id="post_button" class="post-input">Post</button>
             </div>
@@ -62,7 +57,7 @@
                             <ul>
                                 <li><i class="fa-solid fa-bookmark"></i>Lưu bài viết</li>
                                 <li><i class="fa-regular fa-bell"></i>Bật thông báo</li>
-                                @if ($item['userId'] == $user['userId'])
+                                @if ($item['userId'] == $pro_user['userId'])
                                     <li onclick="delete_post({{ $item['postId'] }})"><i
                                             class="fa-solid fa-trash-can"></i>Xóa bài viết</li>
                                 @endif
@@ -108,7 +103,7 @@
             <div class="cmt-btn">
                 <div class="container-cmt">
                     <div class="name-cmt">
-                        <h4>Article by {{ $item['fullName'] }}</h4>
+                        <h4>Bài viết của {{ $item['fullName'] }}</h4>
                     </div>
                     <form>
                         <div class="view-user">
@@ -142,7 +137,7 @@
                                 <i class="fa-solid fa-camera"></i>
                             </div>
                             <div class="reply-cmt">
-                                <img src="{{ $user['avatar'] }}">
+                                <img src="{{ $pro_user['avatar'] }}">
                                 <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Write a comment..."></textarea>
                                 <div onclick="new_cmt({{ $item['postId'] }})" class="post-btn">Post</div>
                             </div>

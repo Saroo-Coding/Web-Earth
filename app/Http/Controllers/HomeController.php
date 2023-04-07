@@ -17,8 +17,9 @@ class HomeController extends Controller
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Post')->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend_req = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/FriendRequest/' . $id)->json();
-            return view('client.pages.home', ['post' => $post, 'user' => $user, 'friend' => $friend, 'friend_req' => $friend_req]);
+            return view('client.pages.home', ['post' => $post, 'user' => $user,'pro_user' => $pro_user, 'friend' => $friend, 'friend_req' => $friend_req]);
         }
     }
 }

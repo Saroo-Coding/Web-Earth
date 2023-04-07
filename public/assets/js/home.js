@@ -54,24 +54,10 @@ function postrighsMenuToggle(id) {
     document.getElementById('post_' + id).classList.toggle("post-right-menu-height");
 
 }
-// home edit
-// var editbtn = document.querySelector(".edit-right");
-// function editbtnMenuToggle(){
-//     editbtn.classList.toggle("edit-menu-height");
 
-// }
+
 var url = "https://localhost:7126/";
 
-// function previewImage(){
-//     var file = document.getElementById('file').files;
-//     if(file.length > 0){
-//         var fileReader = new FileReader();
-//         fileReader.onload = function(e){
-//             document.getElementById('preview_1').setAttribute('src',e.target.result)
-//         };
-//         fileReader.readAsDataURL(file[0]);
-//     }
-// }
 function new_cmt(postId) {
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
@@ -113,7 +99,9 @@ function delete_post(id) {
         }
     });
 }
-function add_friend(id){
+
+//friend_request
+function add_friend_req(id){
     $.ajax({
         url: url + "Newsfeed/Add_Friend",
         type: 'POST',
@@ -130,7 +118,7 @@ function add_friend(id){
         }
     });
 }
-function unfriend(id){
+function un_friend_req(id){
     $.ajax({
         url: url + "Newsfeed/Unfriend/" + id,
         type: 'DELETE',
@@ -145,11 +133,22 @@ function unfriend(id){
         }
     });
 }
-function feedback_friend(reqId,fb){
-    if(fb = 0){
+//responce_friend
+function addfriend(id){
 
-    }
-    else{
-
-    }
+}
+function unfriend(me,you){
+    $.ajax({
+        url: url + "Newsfeed/XoaBan/" + me + "/" + you,
+        type: 'DELETE',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        error: function (err) {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Đã hủy kết bạn !!!");
+            location.reload();
+        }
+    });
 }

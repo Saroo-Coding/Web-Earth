@@ -8,10 +8,10 @@
     rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Earth</title>
 </head>
 <body>
-   
     <div class="container p-5 d-flex justify-content-center ">
         <div class="col-6 mx-5 bg-white border rounded p-4 shadow-sm ">
                 <h2  class="text-center mb-3 text-danger">Đăng ký</h2>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="pass">
                 </div>
                 <div class="mb-3">
                     <label for="confirmpassword" class="form-label">Xác nhận lại</label>
@@ -48,25 +48,19 @@
                 </div>
                 <div class="d-flex gap-3 my-3">
                     <div class="form-check ">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Nam
-                        </label>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="nam" value="Nam" checked>
+                        <label class="form-check-label" for="exampleRadios1">Nam</label>
                     </div>
                     <div class="form-check ">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                        <label class="form-check-label" for="exampleRadios2">
-                            Nữ
-                        </label>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="nu" value="Nữ">
+                        <label class="form-check-label" for="exampleRadios2">Nữ</label>
                     </div>
                 </div>
                 <div class="form-check my-3">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label" for="defaultCheck1">
-                        Đồng ý với các điều khoản.
-                    </label>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
+                    <label class="form-check-label" for="defaultCheck1">Đồng ý với các điều khoản.</label>
                 </div>
-                <button style="width: 100%; font-size:23px"  type="submit" class="btn my-2 text-white bg-danger">Submit</button>
+                <button style="width: 100%; font-size:23px" onclick="register()" type="button" class="btn my-2 text-white bg-danger">Submit</button>
                 <p class="text-center mt-2">Đã có tài khoản?<a href="{{ route('login') }}"> Đăng nhập ngay</a></p>
             </form>
         </div>
