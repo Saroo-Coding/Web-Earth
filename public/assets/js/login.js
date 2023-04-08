@@ -21,7 +21,7 @@ function sdt() {
     fetch("https://localhost:7126/Login?email=" + document.getElementById("email").value + "&pass=" + pass)
       .then(function(response) {
         if (response.ok) {
-          console.log(response.statusText);
+          //console.log(response.statusText);
         }
         else{
           alert("Sai tài khoản hoặc mật khẩu !!!");

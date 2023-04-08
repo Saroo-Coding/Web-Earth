@@ -34,8 +34,10 @@ class ProfileController extends Controller
             $user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $_COOKIE['user'])->json();
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
+            $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.introdu', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.introdu', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 
@@ -49,8 +51,10 @@ class ProfileController extends Controller
             $user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $_COOKIE['user'])->json();
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
+            $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.img', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.img', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 
@@ -64,8 +68,10 @@ class ProfileController extends Controller
             $user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $_COOKIE['user'])->json();
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
+            $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.friend', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.friend', ['post' => $post, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 }

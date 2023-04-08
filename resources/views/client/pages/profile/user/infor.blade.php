@@ -70,10 +70,7 @@
             </div>
         @else
             <div class="pd-right">
-                @if($check_friend == null && $me_you == null){{-- chua ket ban, minh gui loi moi --}}
-                    <button type="button" style="background: salmon;" onclick="add_friend_req({{ $pro_user['userId'] }})"><span><i class="fa-solid fa-plus"></i><i class="fa-solid fa-user"></i></span>Thêm bạn</button>
-                @endif
-                @if($check_friend == null && $you_me == null){{-- chua ket ban, no gui loi moi --}}
+                @if($check_friend == null && $me_you == null && $you_me == null){{-- chua ket ban, minh gui loi moi --}}
                     <button type="button" style="background: salmon;" onclick="add_friend_req({{ $pro_user['userId'] }})"><span><i class="fa-solid fa-plus"></i><i class="fa-solid fa-user"></i></span>Thêm bạn</button>
                 @endif
                 {{-- can chua ket ban chua gui chua dong y --}}

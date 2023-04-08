@@ -82,6 +82,7 @@ function new_cmt(postId) {
             </div>`;
             document.getElementById("cmt_" + postId).value = "";
             document.getElementById("user-cmt_" + postId).insertAdjacentHTML("afterend", html);
+            document.getElementById("count_cmt_" + postId).innerHTML = parseInt(document.getElementById("count_cmt_" + postId).innerHTML) + 1;
         },
     });
 }

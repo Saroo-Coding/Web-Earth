@@ -20,12 +20,13 @@
             </div>
         </div>
         <div class="post-input-container">
-            <textarea name="content" id="content" rows="3" placeholder="What's on your mind, {{ $pro_user['fullName'] }}?"></textarea>
+            <textarea name="content" id="content" rows="3" placeholder="Bạn đang nghĩ gì vậy {{ $pro_user['fullName'] }}?"></textarea>
             <img style="width: 100%;height: 100%;" id="preview_1">
             <div class="add-post-links">
                 <a href="#"><i class="fa-solid fa-video"></i> Live video </a>
                 <div style="margin-top: 3px;margin-right: 30px;" class="image-upload">
                     <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i>Photo/Video</label></div>
+                    <input type="file" name="file" id="file" style="display: none">
                 <a href="#"><i class="fa-regular fa-face-laugh"></i> Feling/Activity </a>
                 <button type="button" id="post_button" class="post-input">Post</button>
             </div>
@@ -92,7 +93,7 @@
                 <!-- comment -->
                 <div class="comments" onclick="document.getElementById('{{ $item['postId'] }}').style.display='block'">
                     <i class="fa-solid fa-message"></i>
-                    <span>{{ $item['cmt'] }}</span>
+                    <span id="count_cmt_{{ $item['postId'] }}">{{ $item['cmt'] }}</span>
                 </div>
                 <!-- end comment -->
                 <div class="shares"><i class="fa-solid fa-share"></i> <span>{{ $item['share'] }}</span></div>
@@ -167,6 +168,7 @@
     const app = initializeApp(firebaseConfig);
     var reader = new FileReader();
     var input = document.getElementById("file");
+
     input.onchange = e =>{
         var file = document.getElementById('file').files;
         if(file.length > 0){
@@ -174,53 +176,49 @@
                 document.getElementById('preview_1').setAttribute('src',e.target.result)
             };
             reader.readAsDataURL(file[0]);
-            //console.log(GetFileName(file[0] + GetExtName(file[0])));
         }
     };
     reader.onload = function(e){
         document.getElementById('preview_1').setAttribute('src',e.target.result)
     };
-    var abc;
-    function Upload() {
-        var imgToUp = document.getElementById('file').files[0];
-        var imgName = document.getElementById('file').files[0].name;
 
-        const metaData = {contentType:imgToUp.type};
-        const storage = getStorage();
-        const refStorage = sRef(storage,"Images/" + imgName);
-        const UploadTask = uploadBytesResumable(refStorage,imgToUp,metaData);
-        UploadTask.on('state-changed',(snapshot)=>{
-            var progess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            //console.log(progess);
-        },
-        (error) =>{
-            location.reload();
-        },
-        ()=>{
-            getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
-                abc = downloadURL
-            });
-        });
-    };
-    //lay cho dc cai link gan vao img gửi biến ra abc
-    async function new_post() {
-        console.log(abc);
+    function new_post() {
         var content = document.getElementById("content").value;
         var access = document.getElementById("format").options[document.getElementById("format").selectedIndex].text;
         if(document.getElementById('file').files[0] != null){
-            Upload();
-            var img_1 = abc;
+            var imgToUp = document.getElementById('file').files[0];
+            var imgName = document.getElementById('file').files[0].name;
+            const metaData = {contentType:imgToUp.type};
+            const storage = getStorage();
+            const refStorage = sRef(storage,"Images/" + imgName);
+            const UploadTask = uploadBytesResumable(refStorage,imgToUp,metaData);
+            UploadTask.on('state_changed',function(snapshot){
+            },function(error){console.error();
+            },function(){
+                getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+                console.log("1");
+                $.ajax({
+                    type: "POST",
+                    url: url + "Newsfeed/NewPost",
+                    contentType: "application/json;charset=utf-8",
+                    headers: { Authorization: 'Bearer ' + cookie.token },
+                    data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:downloadURL,image2:'Khong',image3:'Khong'}),
+                    success: function () {},
+                    error: function () { alert("Có gì đó sai sai !!!");}
+                });
+            })});
         }
-        else{var img_1 = "Khong"}
+        else{
         $.ajax({
             type: "POST",
             url: url + "Newsfeed/NewPost",
             contentType: "application/json;charset=utf-8",
             headers: { Authorization: 'Bearer ' + cookie.token },
-            data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:img_1}),
-            success: function () {location.reload();},
+            data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:'Khong',image2:'Khong',image3:'Khong'}),
+            success: function () {},
             error: function () { alert("Có gì đó sai sai !!!");}
         });
+        }
     }
     document.getElementById('post_button').onclick = new_post;
 </script>
