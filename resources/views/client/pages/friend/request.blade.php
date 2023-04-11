@@ -12,38 +12,30 @@
 
         <!-- ----------------right-sidebar------------ -->
         <div class="right_sidebar_friendhome">
-            @if ($req_friend != null)
-                <div class="wrappers_friendhome">
-                    <div class="name_addfriend">
-                        <h3>Yêu cầu kết bạn</h3>
-                        {{-- <a href="">
-                            <p>Xem tất cả</p>
-                        </a> --}}
-                    </div>
+            <div class="wrappers_friendhome">
+                <div class="name_addfriend">
+                    <h3>Yêu cầu kết bạn</h3>
+                </div>
+                <div class="containers_right">
                     @foreach ($req_friend as $item)
-                        <div class="containers_right">
-                            <div class="wrappers_right">
-                                <div class="wrapper_friends">
-                                    <div class="img_friends">
-                                        <a href="{{ route('profile', $item['toUser']) }}"><img
-                                                src="{{ $item['avatar'] }}"></a>
-                                    </div>
-                                    <div class="nameh2">
-                                        <h4>{{ $item['fullName'] }}</h4>
-                                        <p>4 bạn chung</p>
-                                    </div>
-                                    <div class="btn_add">
-                                        <button>Hủy yêu cầu</button>
-                                    </div>
+                        <div class="wrappers_right">
+                            <div class="wrapper_friends">
+                                <div class="img_friends">
+                                    <a href="{{ route('profile', $item['toUser']) }}"><img src="{{$item['avatar']}}" alt="avatar"></a>
+                                </div>
+                                <div class="nameh2">
+                                    <h4>{{$item['fullName']}}</h4>
+                                    <p>4 bạn chung</p>
+                                </div>
+                                <div class="btn_add">
+                                    <button type="button" style="background: crimson;" onclick="un_friend_req({{ $item['reqId'] }})"><i class="fa-solid fa-user"></i></span> Hủy yêu cầu</button>
+                                    <button type="button" style="background-color: #1876f2"><i class="fa-solid fa-comment-dots"></i> Nhắn tin</button>
                                 </div>
                             </div>
+                        </div>
                     @endforeach
-                </div>
-            @else
-                <div class="name_addfriend">
-                    <h3>Hãy gửi lời mời kết bạn </h3>
-                </div>
-            @endif
+                </div> 
+            </div> 
         </div>
     </div>
 @endsection

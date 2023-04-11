@@ -28,33 +28,33 @@
             </div>
             <div id="EDIT_USER" class="modal_user">
                 <form class="modal_content animate">
-                    <h2>Edit profile</h2>
+                    <h2>Chỉnh sửa hồ sơ</h2>
                     <div class="container_edit">
                         {{-- anh user --}}
                         <div>
                             <div class="img_user">
                                 <h3>Ảnh đại diện </h3>
                                 <div class="img_container">
-                                    <img src="{{ $pro_user['avatar'] }}" class="avatar">
+                                    <img id="img_user" src="{{ $pro_user['avatar'] }}" class="avatar">
                                 </div>
                             </div>
-                            <input type="file" name="file_user" class="file_user" id="file_avatar">
+                            <input type="file" name="file" class="file_user" id="file_avatar">
                         </div>
                         {{-- anh bia --}}
                         <div>
                             <div class="img_user">
                                 <h3>Ảnh bìa</h3>
                                 <div class="cover_imgcontainer">
-                                    <img src="{{ $pro_user['anhBia'] }}" class="cover_img">
+                                    <img id="img_cover" src="{{ $pro_user['anhBia'] }}" class="cover_img">
                                 </div>
                             </div>
-                            <input type="file" name="file_user" class="file_cover" id="file_cover">
+                            <input type="file" name="file" class="file_cover" id="file_cover">
                         </div>
                         {{-- tieu su --}}
                         <div>
                             <div class="img_user">
                                 <h3>Giới thiệu</h3>
-                                <textarea name="life" id="life" class="life" cols="50" rows="3" placeholder="Intro..."> </textarea>
+                                <textarea name="life" id="life" class="life" cols="50" rows="3">{{$pro_user['otherInfo']}}</textarea>
                             </div>
                         </div>
 
@@ -63,7 +63,7 @@
                         <div class="wrapper_btn">
                             <button type="button" onclick="document.getElementById('EDIT_USER').style.display='none'"
                                 class="cancel_btn">Cancel</button>
-                            <button type="submit" class="btnPost">Cập nhật</button>
+                            <button type="button" id="btnPost" class="btnPost">Cập nhật</button>
                         </div>
                     </div>
                 </form>
@@ -85,7 +85,7 @@
                 @endif
                 @if ($you_me != null){{-- No gui ket ban minh --}}
                     <button type="button" style="background: green;" onclick="addfriend({{ $you_me['reqId'] }})"><span><i class="fa-solid fa-check"></i><i class="fa-solid fa-user"></i></span>Đồng ý</button>
-                    <button type="button" style="background: crimson;" onclick="un_friend_req({{ $you_me['reqId'] }})"><span><i class="fa-solid fa-times"></i><i class="fa-solid fa-user"></i></span>Hủy lời mời</button>
+                    <button type="button" style="background: crimson;" onclick="un_friend_req({{ $you_me['reqId'] }})"><span><i class="fa-solid fa-times"></i><i class="fa-solid fa-user"></i></span>Từ chối</button>
                     <button type="button"> <i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
                 @endif
             </div>
@@ -109,3 +109,91 @@
         </ul>
     </div>
 </div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import { getStorage,ref as sRef,uploadBytesResumable,getDownloadURL } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-storage.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBs49eMo7jaEsxX9Xp5VZmFvssKOlfxFR0",
+      authDomain: "doan-ad756.firebaseapp.com",
+      projectId: "doan-ad756",
+      storageBucket: "doan-ad756.appspot.com",
+      messagingSenderId: "175692384807",
+      appId: "1:175692384807:web:cc61a86312c66c7e7edc02",
+      measurementId: "G-6CN2EP82SD"
+    };
+    const app = initializeApp(firebaseConfig);
+    var reader = new FileReader();
+
+    document.getElementById("file_avatar").onchange = e =>{
+        var file = document.getElementById('file_avatar').files;
+        if(file.length > 0){
+            reader.onload = function(e){
+                document.getElementById('img_user').setAttribute('src',e.target.result)
+            };
+            reader.readAsDataURL(file[0]);
+        }
+    };
+    document.getElementById("file_cover").onchange = e =>{
+        var file = document.getElementById('file_cover').files;
+        if(file.length > 0){
+            reader.onload = function(e){
+                document.getElementById('img_cover').setAttribute('src',e.target.result)
+            };
+            reader.readAsDataURL(file[0]);
+        }
+    };
+
+    function update_profile() {
+        var avatar,cover,life;
+        document.getElementById('life').onchange = e =>{ 
+            $.ajax({
+                type: "PUT",
+                url: url + "Account/EditImage/" + cookie.user,
+                contentType: "application/json;charset=utf-8",
+                headers: { Authorization: 'Bearer ' + cookie.token },
+                data: JSON.stringify({userId:cookie.user, otherInfo:document.getElementById('life').value,}),
+                success: function () {location.reload();},
+                error: function () { alert("Có gì đó sai sai !!!");}
+            });
+        };
+        ///////////////////set logic cho avatar or cover or life///////////////////////
+        if(document.getElementById('file_avatar').files[0] != null){};
+        if(document.getElementById('file_cover').files[0] != null){};
+        
+        // if(document.getElementById('file').files[0] != null){
+        //     var imgToUp = document.getElementById('file').files[0];
+        //     var imgName = document.getElementById('file').files[0].name;
+        //     const metaData = {contentType:imgToUp.type};
+        //     const storage = getStorage();
+        //     const refStorage = sRef(storage,cookie.user + "/" + imgName);
+        //     const UploadTask = uploadBytesResumable(refStorage,imgToUp,metaData);
+        //     UploadTask.on('state_changed',function(snapshot){
+        //     },function(error){console.error();location.reload();
+        //     },function(){
+        //         getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
+        //         $.ajax({
+        //             type: "POST",
+        //             url: url + "Account/EditImage/" + cookie.user,
+        //             contentType: "application/json;charset=utf-8",
+        //             headers: { Authorization: 'Bearer ' + cookie.token },
+        //             data: JSON.stringify({ otherInfo:}),
+        //             success: function () {location.reload();},
+        //             error: function () { alert("Có gì đó sai sai !!!");location.reload();}
+        //         });
+        //     })});
+        // }
+        // else{
+        //     $.ajax({
+        //         type: "POST",
+        //         url: url + "Account/EditImage/" + cookie.user,
+        //         contentType: "application/json;charset=utf-8",
+        //         headers: { Authorization: 'Bearer ' + cookie.token },
+        //         data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:'Khong',image2:'Khong',image3:'Khong'}),
+        //         success: function () {location.reload();},
+        //         error: function () { alert("Có gì đó sai sai !!!");location.reload();}
+        //     });
+        // }
+    }
+    document.getElementById('btnPost').onclick = update_profile;
+</script>

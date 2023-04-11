@@ -18,25 +18,21 @@
                 <div class="wrappers_friendhome">
                     <div class="name_addfriend">
                         <h3>Lời mời kết bạn</h3>
-                        {{-- <a href="">
-                            <p>Xem tất cả</p>
-                        </a> --}}
                     </div>
                     @foreach ($friend_req as $item)
                         <div class="containers_right">
                             <div class="wrappers_right">
                                 <div class="wrapper_friends">
                                     <div class="img_friends">
-                                        <a href="{{ route('profile', $item['fromUser']) }}"><img
-                                                src="{{ $item['avatar'] }}"></a>
+                                        <a href="{{ route('profile', $item['fromUser']) }}"><img src="{{ $item['avatar'] }}" alt="avatar"></a>
                                     </div>
                                     <div class="nameh2">
                                         <h4>{{ $item['fullName'] }}</h4>
                                         <p>4 bạn chung</p>
                                     </div>
                                     <div class="btn_add">
-                                        <button>Đồng ý</button>
-                                        <button>Hủy</button>
+                                        <button type="button" onclick="addfriend({{ $item['reqId'] }})">Đồng ý</button>
+                                        <button type="button" onclick="un_friend_req({{ $item['reqId'] }})">Từ chối</button>
                                     </div>
                                 </div>
                             </div>

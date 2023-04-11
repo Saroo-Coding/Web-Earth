@@ -33,7 +33,6 @@
     <script src="{{asset('assets/js/home.js')}}"></script>
     <script src="{{asset('assets/js/header.js')}}"></script>
     <script src="{{asset('assets/js/image.js')}}"></script>
-    <script src="{{asset('assets/js/info.js')}}"></script>
     <script src="{{asset('assets/js/introdu.js')}}"></script>
     
 </body>

@@ -13,7 +13,9 @@
                 <a href="{{ route('friend') }}">
                     <i class="fa-solid fa-user-group "></i> Bạn bè
                 </a>
-                <a href="{{ route('Menja') }}">
+                {{-- <a href="{{ route('Menja') }}"> --}}
+                {{-- <a href="{{ route('TheCube') }}"> --}}
+                <a href="{{ route('Game2048') }}">
                     <i class="fa-solid fa-gamepad"></i> Trò chơi
                 </a>
                 <a href="#">

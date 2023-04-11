@@ -14,6 +14,7 @@ class EarthController extends Controller
         }
         return view('client.pages.login');
     }
+    
     public function register(){
         return view('client.pages.register');
     }

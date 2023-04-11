@@ -56,7 +56,6 @@ body{
     margin-right: 20px;
     border-radius: 50%;
     cursor: pointer;
-    border: 3px solid salmon;
     object-fit: cover;
 }
 .profile-details .pd-row div h3 {
@@ -378,7 +377,7 @@ body{
     visibility: hidden;
 }
 .file_user::before {
-    content: 'Upload avatar';
+    content: 'Chọn ảnh đại diện';
     display: inline-block;
     text-align: center;
     border: 1px solid #999;
@@ -410,7 +409,7 @@ body{
     visibility: hidden;
 }
 .file_cover::before {
-    content: 'Upload cover image';
+    content: 'Chọn ảnh bìa';
     display: inline-block;
     text-align: center;
     border: 1px solid #999;

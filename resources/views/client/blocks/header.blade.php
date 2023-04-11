@@ -19,7 +19,7 @@
             <input type="text" placeholder="Search...">
         </div>
         <div class="nav-user-icon" onclick="settingsMenuToggle()">
-            <img src="{{$user['avatar']}}">
+            <img src="{{$user['avatar']}}" alt="avatar">
         </div>
     </div>
     <div class="settings-menu">
@@ -28,7 +28,7 @@
         </div>
         <div class="settings-menu-inner">
             <div class="user-profile">
-                    <img src="{{$user['avatar']}}">
+                    <img src="{{$user['avatar']}}" alt="avatar">
                     <a href="{{ route('profile', $user['userId']) }}" style="text-decoration: none">
                         <p class="name-profile">{{$user['fullName']}}</p>
                     </a>

@@ -14,6 +14,7 @@ class HomeController extends Controller
         } else {
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
+            
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Post')->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();

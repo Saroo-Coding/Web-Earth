@@ -39,11 +39,9 @@ class FriendController extends Controller
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
-            $post = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Post')->json();
-            $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
-            $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
-            $friend_req = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/FriendRequest/' . $id)->json();
-            return view('client.pages.friend.suggestion', ['post' => $post, 'user' => $user,'pro_user' => $pro_user, 'friend' => $friend, 'friend_req' => $friend_req]);
+            $new_friend =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/NewFriend/' . $id)->json();
+            
+            return view('client.pages.friend.suggestion', ['user' => $user, 'new_friend' => $new_friend]);
         }
     }
     public function listfriend()

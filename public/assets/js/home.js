@@ -129,7 +129,7 @@ function un_friend_req(id){
             location.reload();
         },
         success: function () {
-            alert("Đã hủy lời mời kết bạn !!!");
+            alert("Đã từ chối lời mời kết bạn !!!");
             location.reload();
         }
     });

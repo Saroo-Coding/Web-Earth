@@ -24,6 +24,8 @@ Route::get('/suggestion', [FriendController::class, 'suggestion'])->name('sugges
 Route::get('/list', [FriendController::class, 'listfriend'])->name('listfriend');
 //Game
 Route::get('/Menja', [GameController::class, 'Menja'])->name('Menja');
+Route::get('/TheCube', [GameController::class, 'TheCube'])->name('TheCube');
+Route::get('/Game2048', [GameController::class, 'Game2048'])->name('Game2048');
 
 // ADMIN
 Route::prefix('admin')->group(function (){ // thêm /admin sẵn

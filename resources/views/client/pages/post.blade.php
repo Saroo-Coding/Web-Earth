@@ -25,7 +25,7 @@
             <div class="add-post-links">
                 <a href="#"><i class="fa-solid fa-video"></i> Live video </a>
                 <div style="margin-top: 3px;margin-right: 30px;" class="image-upload">
-                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i>Photo/Video</label></div>
+                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i> Photo/Video</label></div>
                     <input type="file" name="file" id="file" style="display: none">
                 <a href="#"><i class="fa-regular fa-face-laugh"></i> Feling/Activity </a>
                 <button type="button" id="post_button" class="post-input">Post</button>
@@ -59,8 +59,7 @@
                                 <li><i class="fa-solid fa-bookmark"></i>Lưu bài viết</li>
                                 <li><i class="fa-regular fa-bell"></i>Bật thông báo</li>
                                 @if ($item['userId'] == $pro_user['userId'])
-                                    <li onclick="delete_post({{ $item['postId'] }})"><i
-                                            class="fa-solid fa-trash-can"></i>Xóa bài viết</li>
+                                    <li onclick="delete_post({{ $item['postId'] }})"><i class="fa-solid fa-trash-can"></i>Xóa bài viết</li>
                                 @endif
 
                             </ul>
@@ -178,9 +177,6 @@
             reader.readAsDataURL(file[0]);
         }
     };
-    reader.onload = function(e){
-        document.getElementById('preview_1').setAttribute('src',e.target.result)
-    };
 
     function new_post() {
         var content = document.getElementById("content").value;
@@ -190,34 +186,33 @@
             var imgName = document.getElementById('file').files[0].name;
             const metaData = {contentType:imgToUp.type};
             const storage = getStorage();
-            const refStorage = sRef(storage,"Images/" + imgName);
+            const refStorage = sRef(storage,cookie.user + "/" + imgName);
             const UploadTask = uploadBytesResumable(refStorage,imgToUp,metaData);
             UploadTask.on('state_changed',function(snapshot){
-            },function(error){console.error();
+            },function(error){console.error();location.reload();
             },function(){
                 getDownloadURL(UploadTask.snapshot.ref).then((downloadURL)=>{
-                console.log("1");
                 $.ajax({
                     type: "POST",
                     url: url + "Newsfeed/NewPost",
                     contentType: "application/json;charset=utf-8",
                     headers: { Authorization: 'Bearer ' + cookie.token },
                     data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:downloadURL,image2:'Khong',image3:'Khong'}),
-                    success: function () {},
-                    error: function () { alert("Có gì đó sai sai !!!");}
+                    success: function () {location.reload();},
+                    error: function () { alert("Có gì đó sai sai !!!");location.reload();}
                 });
             })});
         }
         else{
-        $.ajax({
-            type: "POST",
-            url: url + "Newsfeed/NewPost",
-            contentType: "application/json;charset=utf-8",
-            headers: { Authorization: 'Bearer ' + cookie.token },
-            data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:'Khong',image2:'Khong',image3:'Khong'}),
-            success: function () {},
-            error: function () { alert("Có gì đó sai sai !!!");}
-        });
+            $.ajax({
+                type: "POST",
+                url: url + "Newsfeed/NewPost",
+                contentType: "application/json;charset=utf-8",
+                headers: { Authorization: 'Bearer ' + cookie.token },
+                data: JSON.stringify({ content: content, userId: cookie.user, accessModifier: access, image1:'Khong',image2:'Khong',image3:'Khong'}),
+                success: function () {location.reload();},
+                error: function () { alert("Có gì đó sai sai !!!");location.reload();}
+            });
         }
     }
     document.getElementById('post_button').onclick = new_post;
