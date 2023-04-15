@@ -85,7 +85,7 @@
             <div class="sidebar-title-chat">
                 @foreach ($friend as $item)
                     <div class="online-list">
-                        <div class="online">
+                        <div id="onl-{{$item['userId']}}" class="online">
                             <a href="{{ route('profile', $item['userId']) }}">
                                 <img src="{{$item['avatar']}}" alt="">
                             </a>

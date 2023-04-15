@@ -199,16 +199,13 @@ body{
 .online{
     position: relative;
 }
-.online::after{
+.online-dot::after{
     content: '';
     width: 7px;
     height: 7px;
-    border: 2px solid #fff;
     border-radius: 50%;
     background: #41db51;
     position: absolute;
-    right: 0;
-    bottom: 5px;
 }
 .online-list{
     display: flex;

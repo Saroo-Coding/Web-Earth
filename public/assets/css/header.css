@@ -101,17 +101,7 @@ h1{
 .online{
     position: relative;
 }
-.online::after{
-    content: '';
-    width: 7px;
-    height: 7px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    background: #41db51;
-    position: absolute;
-    top: 0;
-    right: 1px;
-}
+
 .messenger-menu{
     position: absolute;
     width: 90%;

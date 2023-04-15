@@ -12,16 +12,19 @@ Route::get('/register', [EarthController::class, 'register'])->name('register');
 
 // home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 // CLIENT USER
 Route::get('user/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 Route::get('user/friend/{id}', [ProfileController::class, 'friend'])->name('friend');
 Route::get('user/image/{id}', [ProfileController::class, 'image'])->name('image');
 Route::get('user/introduce/{id}', [ProfileController::class, 'introduce'])->name('introduce');
+
 //Friend
 Route::get('/friend', [FriendController::class, 'friend'])->name('friend');
 Route::get('/requests', [FriendController::class, 'requests'])->name('requests');
 Route::get('/suggestion', [FriendController::class, 'suggestion'])->name('suggestion');
 Route::get('/list', [FriendController::class, 'listfriend'])->name('listfriend');
+
 //Game
 Route::get('/Menja', [GameController::class, 'Menja'])->name('Menja');
 Route::get('/TheCube', [GameController::class, 'TheCube'])->name('TheCube');
