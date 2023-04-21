@@ -14,9 +14,11 @@ class FriendController extends Controller
         } else {
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
+            $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
+            $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend_req = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/FriendRequest/' . $id)->json();
-            return view('client.pages.friend.friend_home', [ 'user' => $user, 'friend_req' => $friend_req]);
+            return view('client.pages.friend.friend_home', [ 'user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'friend_req' => $friend_req]);
         }
     }
     public function requests()
@@ -26,9 +28,11 @@ class FriendController extends Controller
         } else {
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
+            $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
+            $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $req_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/RequestFriend/' . $id)->json();
-            return view('client.pages.friend.request', ['user' => $user, 'req_friend' => $req_friend]);
+            return view('client.pages.friend.request', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'req_friend' => $req_friend]);
         }
     }
     public function suggestion()
@@ -38,10 +42,12 @@ class FriendController extends Controller
         } else {
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
+            $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
+            $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $new_friend =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/NewFriend/' . $id)->json();
             
-            return view('client.pages.friend.suggestion', ['user' => $user, 'new_friend' => $new_friend]);
+            return view('client.pages.friend.suggestion', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'new_friend' => $new_friend]);
         }
     }
     public function listfriend()
@@ -51,9 +57,11 @@ class FriendController extends Controller
         } else {
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
+            $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
+            $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
-            return view('client.pages.friend.listfriend', ['user' => $user, 'friend' => $friend]);
+            return view('client.pages.friend.listfriend', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'friend' => $friend]);
         }
     }
 }

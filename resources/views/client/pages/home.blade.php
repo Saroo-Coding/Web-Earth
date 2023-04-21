@@ -8,37 +8,38 @@
         <div class="left-sidebar">
             <div class="imp-links">
                 <a href="{{ route('profile', $user['userId']) }}" class="img-userss">
-                    <img src="{{ $user['avatar'] }}">{{ $user['fullName'] }}
+                    <img src="{{ $user['avatar'] }}" alt="">{{ $user['fullName'] }}
                 </a>
                 <a href="{{ route('friend') }}">
                     <i class="fa-solid fa-user-group "></i> Bạn bè
                 </a>
                 {{-- <a href="{{ route('Menja') }}"> --}}
                 {{-- <a href="{{ route('TheCube') }}"> --}}
-                <a href="{{ route('Game2048') }}">
+                <a href="{{ route('gamehouse') }}">
                     <i class="fa-solid fa-gamepad"></i> Trò chơi
                 </a>
                 <a href="#">
                     <i class="fa-solid fa-shop"></i> Cửa hàng
                 </a>
-                <a href="#">
-                    Xem thêm
-                </a>
             </div>
             <!-- shortcut -->
             <div class="shortcut-links">
-                <p>Nhóm</p>
-                <a href="#">
-                    <img src="{{ asset('img/web-developer.jpg') }}" alt=""> Web Developers
-                </a>
-                <a href="#">
-                    <img src="{{ asset('img/WebDesign.jpg') }}" alt=""> Web Design Course
-                </a>
-                <a href="#">
-                    <img src="{{ asset('img/FullStack.png') }}" alt=""> Full Stack
-                </a>
-                <a href="#" class="all-groups">
-                    Danh sách nhóm
+                <p>Nhóm của bạn</p>
+                @foreach ( array_slice($user['groups'], 0, 3) as $item)
+                    <a href="{{ route('Post',$item['groupId']) }}">
+                        <img src="{{$item['avatar']}}" alt=""> {{$item['nameGroup']}}
+                    </a>
+                @endforeach
+
+                <p>Nhóm đề xuất</p>
+                @foreach ( array_slice($user['notInGroups'], 0, 3) as $item)
+                    <a href="{{ route('Post',$item['groupId']) }}">
+                        <img src="{{$item['avatar']}}" alt=""> {{$item['nameGroup']}}
+                    </a>
+                @endforeach
+                
+                <a href="" class="all-groups">
+                    Xem thêm nhóm
                 </a>
             </div>
         </div>
@@ -59,7 +60,7 @@
                     <div class="add-sidebar-title">
                         <div class="online-list">
                             <div class="online">
-                                <a href="{{ route('profile', $item['fromUser']) }}"><img src="{{$item['avatar']}}"></a>
+                                <a href="{{ route('profile', $item['fromUser']) }}"><img src="{{$item['avatar']}}" alt="Avatar"></a>
                             </div>
                             <div class="add">
                                 <p>{{$item['fullName']}}</p>
@@ -74,10 +75,10 @@
             @endif
             <!-- ---- -->
             <div class="sidebar-title">
-                <h4>Online</h4>
+                <h4>Đang hoạt động</h4>
                 <div class="sidebar-search">
                     <div id="search-messenger">
-                        <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="button" id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                         <input type="text" name="" id="search-mes" placeholder="Tìm bạn bè...">
                     </div>
                 </div>

@@ -15,12 +15,14 @@ class HomeController extends Controller
             $id = $_COOKIE['user'];
             $url = "https://localhost:7126/";
             
-            $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
-            $post = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Post')->json();
+            $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();//user chinh
+            $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
+            $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
+            $post = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Post/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
-            $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
+            $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();//vi post nen ktra profile co trung vs user chinh ko 
             $friend_req = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/FriendRequest/' . $id)->json();
-            return view('client.pages.home', ['post' => $post, 'user' => $user,'pro_user' => $pro_user, 'friend' => $friend, 'friend_req' => $friend_req]);
+            return view('client.pages.home', ['post' => $post, 'alluser' => $alluser, 'allgroup' => $allgroup, 'user' => $user,'pro_user' => $pro_user, 'friend' => $friend, 'friend_req' => $friend_req]);
         }
     }
 }

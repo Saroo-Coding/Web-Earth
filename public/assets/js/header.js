@@ -19,7 +19,14 @@ function settingsMenuToggle(){
     settingsmenu.classList.toggle("settings-menu-height");
     
 }
-
+// xóa lịch sử tìm kiếm trên thanh search header
+const closebtns = document.getElementsByClassName("fa-xmark");
+let i;
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    this.parentElement.style.display = 'none';
+  });
+}
 
 // Pusher.logToConsole = true;
 

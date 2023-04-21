@@ -20,13 +20,13 @@ Tất cả bạn bè | Earth
                     <h3>Bạn bè</h3>
                     <div class="sidebar-search">
                         <div id="search-messenger">
-                            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button id="search-btn"><i class="fa-solid fa-magnifying-glass" title="Search"></i></button>
                             <input type="text" name="" id="search-mes" placeholder="Tìm kiếm bạn bè...">             
                         </div>
                     </div>
                 </div>
-                @foreach ($friend as $item)
-                    <div class="friends-friends">
+                <div class="friends-friends">
+                    @foreach ($friend as $item)
                         <div class="div-friends">
                             <a href="{{ route('profile', $item['userId']) }}"><img src="{{$item['avatar']}}"><p>{{$item['fullName']}}</p></a>
                             <div class="info-friends">
@@ -37,11 +37,6 @@ Tất cả bạn bè | Earth
                                         </div>
                                         <div class="infos">
                                             <h4>{{$item['fullName']}}</h4>
-                                            {{-- <ul>
-                                                <li><i class="fa-solid fa-briefcase"></i>Director at 99media Ltd</li>
-                                                <li><i class="fa-solid fa-building-columns"></i>Studied at Amity University</li>
-                                                <li><i class="fa-solid fa-building-columns"></i>Studied at Amity University</li>
-                                            </ul> --}}
                                         </div>
                                     </div>
                                     <div class="info-bottom">
@@ -51,8 +46,8 @@ Tất cả bạn bè | Earth
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div> 
         

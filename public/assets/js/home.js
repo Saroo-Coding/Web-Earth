@@ -22,10 +22,15 @@ else {
     localStorage.setItem("theme", "light");
 }
 
-var modal = document.getElementById('section-cmt');
-var albums = document.getElementById('id01'); // albums
-var EDIT_USER = document.getElementById('EDIT_USER'); //EDIT USER
+const modal = document.getElementById('section-cmt');
+const albums = document.getElementById('id01'); // albums
+const EDIT_USER = document.getElementById('EDIT_USER'); //EDIT USER
+const searchs_header = document.getElementById('searchss');
 window.onclick = function (event) {
+    //searchs header
+    if (event.target == searchs_header) {
+        searchs_header.style.display = "none";
+    }
     // comment
     if (event.target == modal) {
         modal.style.display = "none";
@@ -46,10 +51,15 @@ function postrighsMenuToggle(id) {
     document.getElementById('post_' + id).classList.toggle("post-right-menu-height");
 }
 
+document.getElementById('logout').onclick = function(){
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    location.reload();
 
+};
 
 var url = "https://localhost:7126/";
-
+//post
 function new_cmt(postId) {
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
@@ -71,7 +81,6 @@ function new_cmt(postId) {
         });
     }
 }
-
 function delete_post(id) {
     $.ajax({
         url: url + "Newsfeed/XoaPost/" + id,
@@ -86,7 +95,44 @@ function delete_post(id) {
         }
     });
 }
-
+function heart(id){
+    if(document.getElementById(id + '-heart').classList.contains('fa-solid') == false){
+        $.ajax({
+            url: url + "Newsfeed/NewLike",
+            type: 'POST',
+            headers: { Authorization: 'Bearer ' + cookie.token },
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({ postId: id, userId: cookie.user }),
+            error: function (err) {
+                alert("Đã có lỗi xảy ra !!!")
+                location.reload();
+            },
+            success: function () {
+                document.getElementById(id + '-heart').classList.remove('fa-regular');
+                document.getElementById(id + '-heart').className += ' fa-solid';
+                document.getElementById(id + '-count-heart').innerHTML = parseInt(document.getElementById(id + '-count-heart').innerHTML) + 1;
+            }
+        });
+    }
+    else{
+        $.ajax({
+            url: url + "Newsfeed/UnHeart",
+            type: 'DELETE',
+            headers: { Authorization: 'Bearer ' + cookie.token },
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({ postId: id, userId: cookie.user }),
+            error: function (err) {
+                alert("Đã có lỗi xảy ra !!!")
+                location.reload();
+            },
+            success: function () {
+                document.getElementById(id + '-heart').classList.remove('fa-solid');
+                document.getElementById(id + '-heart').className += ' fa-regular';
+                document.getElementById(id + '-count-heart').innerHTML = parseInt(document.getElementById(id + '-count-heart').innerHTML) - 1;
+            }
+        });
+    }
+}
 //friend_request
 function add_friend_req(id) {
     $.ajax({
@@ -122,7 +168,6 @@ function un_friend_req(id) {
 }
 //responce_friend
 function addfriend(id) {
-
 }
 function unfriend(me, you) {
     $.ajax({
@@ -138,4 +183,79 @@ function unfriend(me, you) {
             location.reload();
         }
     });
+}
+
+//post_group
+function delete_post_group(id) {
+    $.ajax({
+        url: url + "Groups/DeletePost/" + id,
+        type: 'DELETE',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        error: function (err) {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            document.getElementById("post-container_" + id).remove();
+        }
+    });
+}
+function heart_group(id){
+    if(document.getElementById(id + '-heart').classList.contains('fa-solid') == false){
+        $.ajax({
+            url: url + "Groups/NewLike",
+            type: 'POST',
+            headers: { Authorization: 'Bearer ' + cookie.token },
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({ postId: id, userId: cookie.user }),
+            error: function (err) {
+                alert("Đã có lỗi xảy ra !!!")
+                location.reload();
+            },
+            success: function () {
+                document.getElementById(id + '-heart').classList.remove('fa-regular');
+                document.getElementById(id + '-heart').className += ' fa-solid';
+                document.getElementById(id + '-count-heart').innerHTML = parseInt(document.getElementById(id + '-count-heart').innerHTML) + 1;
+            }
+        });
+    }
+    else{
+        $.ajax({
+            url: url + "Groups/UnHeart",
+            type: 'DELETE',
+            headers: { Authorization: 'Bearer ' + cookie.token },
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify({ postId: id, userId: cookie.user }),
+            error: function (err) {
+                alert("Đã có lỗi xảy ra !!!")
+                location.reload();
+            },
+            success: function () {
+                document.getElementById(id + '-heart').classList.remove('fa-solid');
+                document.getElementById(id + '-heart').className += ' fa-regular';
+                document.getElementById(id + '-count-heart').innerHTML = parseInt(document.getElementById(id + '-count-heart').innerHTML) - 1;
+            }
+        });
+    }
+}
+function new_cmt_group(postId) {
+    var content = document.getElementById("cmt_" + postId).value;
+    var img = document.getElementById("user_img").src;
+    var name = document.getElementById("user_name").textContent;
+    if (content == '') {
+        alert('Hãy viết bình luận !!!')
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: url + "Groups/NewCmt",
+            contentType: "application/json;charset=utf-8",
+            headers: { Authorization: 'Bearer ' + cookie.token },
+            data: JSON.stringify({ postId: postId, userId: cookie.user, content: content }),
+            success: function () {
+                //gui cmt len sever
+                socket.emit('send_Cmt',{img:img,content:content,postId:postId,name:name});
+            },
+        });
+    }
 }

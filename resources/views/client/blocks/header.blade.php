@@ -14,9 +14,48 @@
         </ul>
     </div>
     <div class="nav-right">
-        <div class="search-box">
+        <div class="search-box"  onclick="document.getElementById('searchss').style.display='block'">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search...">
+            <input type="text" id="myInput" placeholder="Tìm kiếm..." onkeyup="myFunction()">
+        </div>
+        <div class="searchss" id="searchss">
+            <ul id="myUL">
+                {{--searchs bạn bè --}}
+                @foreach ($alluser as $item)
+                    <li style="display: none">
+                        <a href="{{ route('profile', $item['userId']) }}">
+                            <div class="searchs_list">
+                                <div class="searchs_img">
+                                    <img src="{{$item['avatar']}}" alt="">
+                                </div>
+                                <div class="searchs_des">
+                                    <h5>{{$item['fullName']}}</h5>
+                                    <p class="search_friend">Bạn bè</p>
+                                </div>
+                            </div>
+                        </a>
+                        <i class="fa-solid fa-xmark"></i>
+                    </li>
+                @endforeach
+                {{-- end searchs bạn bè --}}
+                {{-- searchs nhóm --}}
+                @foreach ($allgroup as $item)
+                    <li style="display: none">
+                        <a href="{{ route('Post',$item['groupId']) }}">
+                            <div class="searchs_list">
+                                <div class="searchs_img">
+                                    <img src="{{$item['avatar']}}" alt="">
+                                </div>
+                                <div class="searchs_des">
+                                    <h5>{{$item['nameGroup']}}</h5>
+                                </div>
+                            </div>
+                        </a>
+                        <i class="fa-solid fa-xmark"></i>
+                    </li>
+                @endforeach
+                {{-- end searchs nhóm --}}
+            </ul>
         </div>
         <div class="nav-user-icon" onclick="settingsMenuToggle()">
             <img src="{{$user['avatar']}}" alt="avatar">
@@ -52,7 +91,8 @@
             </div>
             <div class="settings-links">
                 <i class="fa-solid fa-right-from-bracket"></i>
-                <a href="{{ route('login') }}">Logout</a>
+                {{-- <a href="{{ route('login') }}">Logout</a> --}}
+                <a style="cursor: pointer" id="logout">Logout</a>
             </div>
         </div>
     </div>

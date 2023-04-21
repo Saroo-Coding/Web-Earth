@@ -8,12 +8,19 @@
         <div class="info-cols">
             <!-- image -->
             <div class="profile-image">
+                <div class="title-image">
+                    <h3>Ảnh</h3>
+                </div>
+                {{-- <div class="tab_img">
+                    <button class="tablinks" data-target="#images">Your picture</button>
+                    <button class="tablinks" data-target="#albums">Your Albums</button>
+                </div> --}}
                 <ul class="tab_img">
                     <li data-target="#content_1">
-                        <h3>Ảnh</h3>
+                        <p>Ảnh của bạn</p>
                     </li>
-                    <li style="margin-left: 15px;" data-target="#content_2">
-                        <h3>Album</h3>
+                    <li data-target="#content_2">
+                        <p>Albums của bạn</p>
                     </li>
                 </ul>
                 {{-- image cua ban --}}

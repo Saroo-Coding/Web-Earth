@@ -1,7 +1,7 @@
 @if ($pro_user['userId'] == $_COOKIE['user'])
     <div class="write-post-container">
         <div class="user-profile">
-            <a href="{{ route('profile', $user['userId']) }}"><img id="user_img" src="{{ $user['avatar'] }}"></a>
+            <a href="{{ route('profile', $user['userId']) }}"><img id="user_img" src="{{ $user['avatar'] }}" alt=""></a>
             <div>
                 <div>
                     <a href="{{ route('profile', $user['userId']) }}">
@@ -10,10 +10,10 @@
                 </div>
                 <div class="custom-select">
                     <div class="select">
-                        <select name="format" id="format">
-                            <option value="Public">Public</option>
-                            <option value="Private">Private</option>
-                            <option value="Follower">Follower</option>
+                        <select name="format" id="format" title="Chế độ xem">
+                            <option value="0">Công khai</option>
+                            <option value="1">Bạn bè</option>
+                            <option value="2">Chỉ mình tôi</option>
                         </select>
                     </div>
                 </div>
@@ -21,12 +21,15 @@
         </div>
         <div class="post-input-container">
             <textarea name="content" id="content" rows="3" placeholder="Bạn đang nghĩ gì vậy {{ $pro_user['fullName'] }}?"></textarea>
-            <img style="width: 100%;height: 100%;" id="preview_1">
+
+            <img style="" id="preview_1" class="img_post_css" alt="">
+
             <div class="add-post-links">
                 <a href="#"><i class="fa-solid fa-video"></i> Live video </a>
                 <div style="margin-top: 3px;margin-right: 30px;" class="image-upload">
                     <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i> Photo/Video</label></div>
                     <input type="file" name="file" id="file" style="display: none">
+                    
                 <a href="#"><i class="fa-regular fa-face-laugh"></i> Feling/Activity </a>
                 <button type="button" id="post_button" class="post-input">Post</button>
             </div>
@@ -39,7 +42,7 @@
     <div class="post-container" id="post-container_{{ $item['postId'] }}">
         <div class="post-row">
             <div class="user-profile">
-                <img src="{{ $item['avatar'] }}">
+                <img src="{{ $item['avatar'] }}" alt="">
                 <div>
                     <div>
                         <a href="{{ route('profile', $item['userId']) }}">
@@ -73,26 +76,30 @@
         </div>
         @if ($item['image1'] != 'Khong')
             <div class="post-img">
-                <img src="{{ $item['image1'] }}">
+                <img src="{{ $item['image1'] }}" alt="">
             </div>
         @endif
         {{-- @if ($item['image2'] != 'Khong')
             <div class="post-img">
-                <img src="{{$item['image2']}}">
+                <img src="{{$item['image2']}}" alt="">
             </div>
         @endif
         @if ($item['image3'] != 'Khong')
             <div class="post-img">
-                <img src="{{$item['image3']}}">
+                <img src="{{$item['image3']}}" alt="">
             </div>
         @endif --}}
         <div class="post-row">
             <div class="activity-icons">
-                <div class="like"> <i class="fa-regular fa-heart"></i> <span>{{ $item['like'] }}</span> </div>
+                @if ($item['liked'] == true)
+                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})" class="fa-solid fa-heart fa-beat"></i> <span id="{{ $item['postId'] }}-count-heart">{{ $item['like'] }}</span> </div>
+                @else
+                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})" class="fa-regular fa-heart fa-beat"></i> <span id="{{ $item['postId'] }}-count-heart">{{ $item['like'] }}</span> </div>
+                @endif
                 <!-- comment -->
                 <div class="comments" onclick="document.getElementById('{{ $item['postId'] }}').style.display='block'">
                     <i class="fa-solid fa-message"></i>
-                    <span id="count_cmt_{{ $item['postId'] }}">{{ $item['cmt'] }}</span>
+                    <span id="count_cmt_{{ $item['postId'] }}">{{count($item['comment'])}}</span>
                 </div>
                 <!-- end comment -->
                 <div class="shares"><i class="fa-solid fa-share"></i> <span>{{ $item['share'] }}</span></div>
@@ -111,7 +118,7 @@
                             <div id="user-cmt_{{ $item['postId'] }}"></div>
                             @foreach ($item['comment'] as $xyz)
                                 <div class="user-cmt">
-                                    <img src="{{ $xyz['avatar'] }}">
+                                    <img src="{{ $xyz['avatar'] }}" alt="">
                                     <div class="name-user">
                                         <div class="user-container">
                                             <div class="name-user-cmt">
@@ -137,7 +144,7 @@
                                 <i class="fa-solid fa-camera"></i>
                             </div>
                             <div class="reply-cmt">
-                                <img src="{{ $pro_user['avatar'] }}">
+                                <img src="{{ $pro_user['avatar'] }}" alt="">
                                 <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Write a comment..."></textarea>
                                 <div onclick="new_cmt({{ $item['postId'] }})" class="post-btn">Post</div>
                             </div>

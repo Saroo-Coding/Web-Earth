@@ -15,7 +15,7 @@
 
 <body>
     <div class="container p-5 d-flex justify-content-center align-items-center ">
-        <div class="col-6 m-5 d-flex justify-content-center align-items-center rounded p-5 ">
+        <div class="col-6 d-flex justify-content-center align-items-center rounded">
             <div class="containers">
                 <div class="left">
                     <h3 class="text-center">Hello friends</h3>
@@ -25,9 +25,14 @@
             </div>
         </div>
         <div class="col-6 m-5 bg-white border rounded px-5 py-4 shadow-sm ">
-            <h2 class="text-center mb-3 text-danger">Đăng nhập</h2>
-            <button class="btn btn-light" onclick="email()">Gmail</button>
-            <button class="btn btn-light" onclick="sdt()">Số điện thoại</button>
+            <div class="mb-3 text-center">
+                <h2 class="text-center mb-3 text-danger">Đăng nhập</h2>
+                <div class="d-flex">
+                    <p class="my-2">Đăng nhập bằng: </p>
+                    <button class="btn btn-light mx-2" onclick="email()">Gmail</button>
+                    <button class="btn btn-light" onclick="sdt()">Số điện thoại</button>
+                </div>
+            </div>
             <form class="form">
                 <div class="mb-3">
                     <label for="email" class="form-label" id="email-sdt">Gmail </label>

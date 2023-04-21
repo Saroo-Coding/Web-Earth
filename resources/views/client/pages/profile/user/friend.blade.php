@@ -12,7 +12,7 @@
                     <h3>Friends</h3>
                     <div class="sidebar-search">
                         <div id="search-messenger">
-                            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
                             <input type="text" name="" id="search-mes" placeholder="Search friends...">
                         </div>
                     </div>

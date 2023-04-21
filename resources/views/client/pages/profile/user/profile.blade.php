@@ -20,15 +20,15 @@
                 <div class="photo-box">
                     @foreach (array_slice($post, 0, 6) as $item)
                         @if ($item['image1'] != "Khong")
-                            <div><img src="{{$item['image1']}}"></div>
+                            <div><img src="{{$item['image1']}}" alt=""></div>
                         @else
                         @endif
                         @if ($item['image2'] != "Khong")
-                            <div><img src="{{$item['image2']}}"></div>
+                            <div><img src="{{$item['image2']}}" alt=""></div>
                         @else
                         @endif
                         @if ($item['image3'] != "Khong")
-                            <div><img src="{{$item['image3']}}"></div>
+                            <div><img src="{{$item['image3']}}" alt=""></div>
                         @else
                         @endif
                     @endforeach
@@ -38,14 +38,14 @@
          
             <div class="profile-intro">
                 <div class="title-box">
-                    <h3>{{$pro_user['friend']}} Bạn</h3>
-                    <a href="{{ route('friend',$pro_user['userId'])}}">Bạn bè</a>
+                    <h3>{{$pro_user['friend']}} Bạn bè</h3>
+                    <a href="{{ route('userfriend',$pro_user['userId'])}}">Xem thêm</a>
                 </div>
                 <div class="friends-box">
                         @foreach (array_slice($friend, 0, 9) as $item)
                         <div>
                             <a style="text-decoration: none" href="{{ route('profile',$item['userId'])}}">
-                                <img src="{{$item['avatar']}}"> <p>{{$item['fullName']}}</p> 
+                                <img src="{{$item['avatar']}}" alt=""> <p>{{$item['fullName']}}</p> 
                             </a>
                         </div>
                         @endforeach

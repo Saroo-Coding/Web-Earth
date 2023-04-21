@@ -1,0 +1,578 @@
+.container_groups{
+    display: flex;
+    justify-content: space-between;
+    padding: 55px 1%;
+}
+.containers_group{
+    flex-basis: 75%; 
+}
+.containers_group_img{
+    height: 400px;
+    width: auto;
+}
+.containers_group_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    object-fit: cover;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.btn_group_add button{
+    padding: 7px 15px;
+    border: var(--border-color);
+    border-radius: 5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--header-color);
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.btn_group_add button:hover{
+    opacity: .8;
+}
+.btn_group_add button i{
+    padding-left: 5px;
+}
+.group_profile{
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.group_profile .group_pd_row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.group_profile .group_pd_row .group_pd_img{
+    width: 150px;
+    height: 150px;
+    margin-right: 20px;
+    border-radius: 9px;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.group_profile .group_pd_row div h3 {
+    font-size: 25px;
+    font-weight: 600;
+}
+.wrappers_groups{
+    display: flex;
+}
+/*----------------------------------------- main -----------------------------------------*/
+.main_sidebar_friendhome{
+    margin-top: 20px;
+    flex-basis: 100%;
+
+}
+/* nút mời bạn bè tham gia group --------------*/
+.addfriend_top{
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+.addfriend_top h5{
+    margin-bottom: 8px;
+}
+.wrapper_addfriend{
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80px;
+    border: 2px solid var(--search-color);
+    overflow: auto;
+    padding: 5px;
+}
+.wrapper_addfriend::-webkit-scrollbar{
+    width: 6px;
+}
+.wrapper_addfriend::-webkit-scrollbar-thumb {
+    background-color: salmon;
+    border-radius: 5px;
+}
+.wrapper_addfriend .linkfriend{
+    display: flex;
+    color: #2196F3;
+    padding: 5px;
+}
+
+.container_addfriend{
+    padding: 16px;
+}
+.addfriend_bottom{
+    width: 100%;
+}
+.modal_groups {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 20px;
+}
+.searchs_member_group{
+    margin-top: 10px;
+    padding:1px 20px;
+    overflow: auto; 
+    height: 180px;
+    width: 100%;
+}
+.searchs_member_group::-webkit-scrollbar{
+    width: 6px;
+}
+.searchs_member_group::-webkit-scrollbar-thumb {
+    background-color: salmon;
+    border-radius: 5px;
+}
+/* check them*/
+.btn_member .container_check{
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 17px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn_member input.check_addfriend{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+}
+.container_check:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.container_check input:checked ~ .checkmark {
+  background-color: var(--header-color);
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container_check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container_check .checkmark:after {
+  left: 6px;
+  top: 0;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.container_addfriend_group.cancel{
+    display: flex;
+    justify-content:space-between;
+}
+.container_addfriend_group .cancelbtn.addbtn{
+    background-color: var(--header-color);
+    font-size: 16px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.container_addfriend_group {
+    display: flex;
+    padding: 16px;
+}
+
+.modal_content_groups h2{
+    margin-top: 15px;
+    text-align: center;
+}
+.post_albums:hover {
+    opacity: 0.8;
+}
+.modal_content_groups {
+    color: var(--color-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 50%;
+}
+/* end nút mời bạn bè tham gia group */
+
+/* file phuong tien */
+.containers_file{
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--color-color);
+}
+.name_file{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name_file button{
+    padding: 7px 15px;
+    border: var(--border-color);
+    border-radius: 5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--header-color);
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.name_file button:hover{
+    opacity: .8;
+}
+.file_image_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% / 4 - 20px);
+    padding: 25px 2%;
+    height: auto;
+    width: 100%;
+}
+.file_image{
+    width: 150px;
+    height: 150px;
+    margin: 10px 10px;
+}
+.file_image_wrapper div img{
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+/* end file phuong tien */
+
+/* member */
+.containers_member{
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--color-color);
+}
+.wrapper_member{
+    margin-bottom: 50px;
+}
+.search_member{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    background: var(--bg-color);
+    border-radius: 20px;
+    padding: 0 15px;
+    border: 1px solid var(--search-color);
+}
+.search_member i{
+    width: 18px;
+    color:dimgray;
+    cursor: pointer;
+}
+.search_member input{
+    width: 100%;
+    color: var(--color-color);
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+}
+.names_h4{
+    display: flex;
+    align-items: center;
+}
+.names_h4 h4{
+    margin-right: 5px;
+}
+.names_h4 span{
+    margin-right: 5px;
+}
+
+#ul_add_member{
+    width: 100%; 
+}
+#ul_add_member li span.btn_member{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+#ul_member{
+    width: 100%; 
+}
+#ul_member li span.btn_member{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.main_member, .main_add_member{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+}
+.title_member .img_member{
+    width: 50px;
+    height: 50px;
+}
+.title_member .img_member img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+
+}
+.title_member{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-color);
+}
+.name_member{
+    margin-left: 15px;
+}
+.name_member a{
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-color);
+}
+.name_member h4:hover{
+    text-decoration: underline;
+}
+.name_member p {
+    margin-top: 2px;
+    font-size: 12px;
+}
+.main_member p.color_qtv{
+    color: salmon;
+}
+.btn_member button{
+    width: 150px;
+    padding: 10px 0;
+    text-align: center;
+    border: var(--border-color);
+    border-radius: 5px;
+    font-weight: 600;
+    color: #fff;
+    background-color: var(--header-color);
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+}
+.btn_member button:hover{
+    opacity: .8;
+}
+.btn_member button i{
+    margin-right: 3px;
+}
+/* end member */
+
+.groups_kin{
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    margin: 110px 0;
+    font-size: 23px;
+    text-decoration:underline;
+}
+
+/*----------------------------------------- end main -----------------------------------------*/
+
+/*----------------------------------------- right -----------------------------------------*/
+.right_sidebar_groups{
+    width: 47%;
+    position: sticky;
+    align-self: flex-start;
+    border-radius: 8px;
+    color: var(--color-color);
+    top: 50px;
+    margin-left: 15px;
+}
+.wrapper_chat_groups li {
+    padding: 10px;
+}
+.wrapper_chat_groups li a{
+    text-decoration: none;
+    color: var(--color-color);
+}
+.info_groups{
+    margin-top: 20px;
+}
+.chat_groups_list{
+    display: flex;
+    align-items: center;
+}
+.chat_groups_h5{
+    margin-left: 13px;
+    font-size: 17px;
+}
+.chat_groups_img{
+    width: 50px;
+    height: 50px;
+}
+.chat_groups_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+    border: 1px solid var(--border-color);
+}
+.container_chat_groups{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+/*----------------------------------------- end right -----------------------------------------*/
+
+
+/* ----------------------------------------- left ----------------------------------------- */
+.left_sidebar_groups{
+    flex-basis: 25%;
+    position: sticky;
+    align-self: flex-start;
+    padding: 25px 0;
+    top: 55px;
+}
+.wrapper_title_groups{
+    display: flex;
+    margin-bottom: 25px;
+}
+.wrapper_title_groups {
+    display: flex;
+    align-items: center;
+}
+.title_img_group{
+    width: 87px;
+    height: 87px;
+}
+.title_img_group img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+}
+.dropdown-menu.group_dropdown{
+    position: absolute;
+    display: none;
+    width: 170px;
+    background: var(--body-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+
+    border-radius: 6px;
+
+}
+.dropdown-menu.group_dropdown li{
+    padding:10px;
+
+}
+.dropdown-menu.group_dropdown li a{
+    color: var(--color-color);
+    text-decoration: none;
+    font-size: 14px;
+}
+.dropdown-menu.group_dropdown li:hover {
+    opacity: .8;
+    border-radius: 6px;
+
+}
+.dropdown .dropdown-menu.group_dropdown::after{
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent var(--body-color) transparent;
+
+}
+.dropdown:hover .dropdown-menu.group_dropdown{
+    display: block;
+}
+.name_groups{
+    margin-left: 15px;
+}
+.name_groups h3{
+    font-weight: 600;
+    font-size: 20px;
+}
+.name_groups p {
+    margin-top: 5px;
+    color: rgb(139, 137, 137);
+    font-size: 13px;
+}
+.name_groups_btn{
+    margin-top: 7px;
+    border: 1px solid var(--border-color);   
+    padding: 6px;
+    width: 170px;
+    border-radius: 8px;
+    background: var(--header-color);
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.name_groups_btn i{
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.profile_title_groups{
+    background: var(--bg-color);
+    padding: 13px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.profile_title_groups h3{
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-color);
+}
+.text_groups{
+    width: 325px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: var(--color-color);
+    overflow: hidden;
+}
+/* ----------------------------------------- end left ----------------------------------------- */

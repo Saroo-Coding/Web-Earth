@@ -1,25 +1,5 @@
 
-:root{
-    --body-color: #efefef;
-    --nav-color:#1846f2;
-    --bg-color:#fff;
-    --primary-color:#edf2fc;
-    --secondary-color:#212121;
-    --color-color: #000;
-}
-.dark-theme{
-    --body-color: #0a0a0a;
-    --nav-color:#000;
-    --bg-color:#1f1f1f;
-    --color-color:#fff;
-}
-body{
-    text-decoration: none;
-    height: 100vh;
-    width: 100%; 
-    background: var(--body-color);
-    transition: background 0.3s;
-}
+
 
 .profile-container{
     margin-top: 55px;
@@ -34,14 +14,15 @@ body{
 .cover-img img{
     width: 100%;
     height: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 6px;
     margin-bottom: 14px;
     object-fit: cover;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .3);
 }
 .profile-details{
     background: var(--bg-color);
     padding: 20px;
+    border-radius: 4px;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -52,10 +33,12 @@ body{
     align-items: center;
 }
 .profile-details .pd-row .pd-img{
-    width: 120px;
+    width: 150px;
+    height: 150px;
     margin-right: 20px;
     border-radius: 50%;
     cursor: pointer;
+    border: 3px solid salmon;
     object-fit: cover;
 }
 .profile-details .pd-row div h3 {
@@ -79,8 +62,13 @@ body{
     object-fit: cover;
 
 }
+.pd-left{
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
 .pd-right button{
-    background: #1876f2;
+    /* background: #1876f2; */
+    background: var(--header-color);
     border: 0;
     outline: 0;
     padding: 6px 10px;
@@ -113,19 +101,32 @@ body{
 .pd-right i {
     font-size: 20px;
 }
+.border_bottom{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
 .pd-bottom{
-    border-top: 1px solid saddlebrown;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     cursor: pointer;
-    width: 40%;
+    width: 45%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+.pd-bottom li{
+    margin-right: 20px;
 }
 .pd-bottom a{
     text-decoration: none;
     color: var(--color-color);
     font-weight: 600;
     font-size: 16px;
+    padding: 10px;
+}
+.pd-bottom li .active{
+    color: var(--header-color);
+    border-bottom: 2px solid var(--header-color);
 }
 .pd-bottom a:hover{
     opacity: .7;
@@ -142,6 +143,9 @@ body{
 }
 .info-col{
     flex-basis: 33%;
+    position: sticky;
+    align-self: flex-start;
+    top: -110px;
 }
 .profile-intro{
     background: var(--bg-color);
@@ -250,6 +254,21 @@ body{
 /* write-post-container------------------------------------------- */
 .post-col{
     flex-basis: 65%;
+}
+.write-post-container{
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--color-color);
+}
+.post-container{
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: var(--color-color);
+    margin: 20px 0;
 }
 .user-profile{
     display: flex;
@@ -383,11 +402,11 @@ body{
     border: 1px solid #999;
     border-radius: 5px;
     outline: none;
-    width: 80%;
+    width: 90%;
     white-space: nowrap;
     padding: 12px 20px;
     margin-top: 4px;
-    margin-left: 50px;
+    margin-left: 22px;
     margin-bottom: 10px;
     -webkit-user-select: none;
     cursor: pointer;
@@ -415,11 +434,11 @@ body{
     border: 1px solid #999;
     border-radius: 5px;
     outline: none;
-    width: 80%;
+    width: 90%;
     white-space: nowrap;
     padding: 12px 20px;
     margin-top: 4px;
-    margin-left: 50px;
+    margin-left: 22px;
     margin-bottom: 10px;
     -webkit-user-select: none;
     cursor: pointer;

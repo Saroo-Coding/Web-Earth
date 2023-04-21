@@ -1,3 +1,4 @@
+
 .profile-infos{
     display: flex;
     justify-content: space-between;
@@ -28,13 +29,17 @@
     cursor: pointer;
     color: var(--color-color);
 }
+.containers_intro ul li span{
+
+    
+}
 .containers_intro ul li i{
     width: 40px;
     text-align: center;
 }
 .app_content_intro{
     display: flex;
-
+    flex-wrap: wrap;
    
 }
 .tabs_intro li{

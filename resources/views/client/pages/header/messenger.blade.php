@@ -6,7 +6,7 @@
         <!-- search-messenger -->
         <div class="container-ms">
             <div id="search-messenger">
-                <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="button" id="search-btn"><i class="fa-solid fa-magnifying-glass" title="Search"></i></button>
                 <input type="text" name="" id="search-mes" placeholder="Search friends...">
                 
             </div>

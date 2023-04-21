@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{asset('assets/css/Game2048.css')}}">
+    <title>2048</title>
 </head>
 <body>
     <div class="container">

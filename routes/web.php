@@ -5,30 +5,38 @@ use App\Http\Controllers\EarthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\GroupController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [EarthController::class, 'login'])->name('login');
-Route::get('/register', [EarthController::class, 'register'])->name('register');
+Route::get('/Login', [EarthController::class, 'login'])->name('login');
+Route::get('/Register', [EarthController::class, 'register'])->name('register');
 
 // home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // CLIENT USER
-Route::get('user/profile/{id}', [ProfileController::class, 'index'])->name('profile');
-Route::get('user/friend/{id}', [ProfileController::class, 'friend'])->name('friend');
-Route::get('user/image/{id}', [ProfileController::class, 'image'])->name('image');
-Route::get('user/introduce/{id}', [ProfileController::class, 'introduce'])->name('introduce');
+Route::get('Profile/{id}', [ProfileController::class, 'index'])->name('profile');
+Route::get('Friend/{id}', [ProfileController::class, 'friend'])->name('userfriend');
+Route::get('Image/{id}', [ProfileController::class, 'image'])->name('image');
+Route::get('Introduce/{id}', [ProfileController::class, 'introduce'])->name('introduce');
 
 //Friend
-Route::get('/friend', [FriendController::class, 'friend'])->name('friend');
-Route::get('/requests', [FriendController::class, 'requests'])->name('requests');
-Route::get('/suggestion', [FriendController::class, 'suggestion'])->name('suggestion');
-Route::get('/list', [FriendController::class, 'listfriend'])->name('listfriend');
+Route::get('Friend', [FriendController::class, 'friend'])->name('friend');
+Route::get('Requests', [FriendController::class, 'requests'])->name('requests');
+Route::get('Suggestion', [FriendController::class, 'suggestion'])->name('suggestion');
+Route::get('List', [FriendController::class, 'listfriend'])->name('listfriend');
 
 //Game
-Route::get('/Menja', [GameController::class, 'Menja'])->name('Menja');
-Route::get('/TheCube', [GameController::class, 'TheCube'])->name('TheCube');
-Route::get('/Game2048', [GameController::class, 'Game2048'])->name('Game2048');
+Route::get('GameHouse', [GameController::class, 'index'])->name('gamehouse');
+Route::get('Menja', [GameController::class, 'Menja'])->name('Menja');
+Route::get('TheCube', [GameController::class, 'TheCube'])->name('TheCube');
+Route::get('Game2048', [GameController::class, 'Game2048'])->name('Game2048');
+
+//Group
+//Route::get('Group/{id}', [GroupController::class, 'group'])->name('Group');
+Route::get('Member/{id}', [GroupController::class, 'member'])->name('Member');
+Route::get('Post/{id}', [GroupController::class, 'postgroup'])->name('Post');
+Route::get('File/{id}', [GroupController::class, 'file'])->name('File');
 
 // ADMIN
 Route::prefix('admin')->group(function (){ // thêm /admin sẵn

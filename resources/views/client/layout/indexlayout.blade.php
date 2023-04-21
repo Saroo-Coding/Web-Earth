@@ -10,12 +10,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{{asset('img/logo-E.png')}}" type="image/x-icon" >
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/friend.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/image.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/introdu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/group.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/home_friend.css') }}">
     <title>@yield('title')</title>
 </head>
@@ -38,6 +40,7 @@
     <script src="{{ asset('assets/js/header.js') }}"></script>
     <script src="{{ asset('assets/js/image.js') }}"></script>
     <script src="{{ asset('assets/js/introdu.js') }}"></script>
+    <script src="{{ asset('assets/js/seach.js') }}"></script>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
         integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
     </script>
@@ -50,8 +53,14 @@
 
         //user online
         socket.emit('send_online', cookie.user);//gui id len sever
-        socket.on('get_online', userId => {//nhan id tu sever
-            document.getElementById('onl-' + userId).className += ' online-dot';//document.getElementById('onl-' + user).classList.remove('online-dot');
+        socket.on('get_online', user => {//nhan id tu sever
+            // duyet danh sach id nhan tu sever
+            // user.forEach(element => {
+            //     if(document.getElementById('onl-' + element.userId) != null)
+            //         document.getElementById('onl-' + element.userId).className += ' online-dot';//document.getElementById('onl-' + user).classList.remove('online-dot');
+            // });
+            if(document.getElementById('onl-' + user) != null)
+                document.getElementById('onl-' + user).className += ' online-dot';//document.getElementById('onl-' + user).classList.remove('online-dot');
         });
         
         //nhan cmt tu sever

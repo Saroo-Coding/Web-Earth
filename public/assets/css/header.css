@@ -45,6 +45,16 @@ h1{
     color: #fff;
 }
 /* NAV LEFT */
+.logo_home_img{
+    /* width: 50px; */
+    height: 40px;
+    
+}
+.logo_home_img img{
+    width: 100%;
+    height: 100%;
+}
+
 .nav-left , .nav-right{
     display: flex;
     align-items: center;
@@ -79,7 +89,7 @@ h1{
     margin-left: 30px;
 }
 .search-box{
-    width: 350px;
+    width: 450px;
     background: #efefef;
     border-radius: 20px;
     display: flex;
@@ -98,10 +108,23 @@ h1{
     outline: none;
     border: 0;
 }
+.search-box:hover{
+    opacity: .9;
+}
 .online{
     position: relative;
 }
-
+.online-dot::after{
+    content: '';
+    width: 7px;
+    height: 7px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #41db51;
+    position: absolute;
+    top: 0;
+    right: 1px;
+}
 .messenger-menu{
     position: absolute;
     width: 90%;
@@ -113,8 +136,6 @@ h1{
     top: 100%;
     left: 0;
     max-width: 0;
-    /* transition: max-width 0.3s;
-    border-bottom: 5px solid salmon; */
 }
 .messenger-menu-height{
     max-width: 300px;
@@ -158,8 +179,6 @@ h1{
     color: var(--color-color);
 }
 .messenger-menu-inner::-webkit-scrollbar{
-    /* width: 0 !important;
-    display: none; */
     width:  7px;
 }
 .messenger-menu-inner::-webkit-scrollbar-thumb {
@@ -185,7 +204,6 @@ h1{
     align-items:center ;
     margin-bottom: 20px;
     cursor: pointer;
-
 }
 .messenger-menu-inner .online-list .online img{
     width: 42px;
@@ -202,15 +220,15 @@ h1{
     overflow: hidden;
     text-overflow: ellipsis; 
     color: var(--color-color);
-    /* border: 1px solid #000000; */
 }
 .messenger-menu-inner .online-list .des p{
     margin-top: 3px;
-    font-size: 14px;
+    font-size: 12px;
 }
 .messenger-menu-inner .online-list .des h5{
-    font-size: 16px;
+    font-size: 14px;
 }
+
 /* settings-menu -------------------------------- */
 .settings-menu{
     position: absolute;
@@ -223,7 +241,6 @@ h1{
     top: 97%;
     right: 5%;
     max-height: 0;
-    /* transition: max-height 0.3s; */
 }
 .settings-menu-height{
     max-height: 450px;
@@ -320,7 +337,6 @@ h1{
 
 }
 
-
 /*  notification */
 .notification-menu{
     position: absolute;
@@ -333,8 +349,6 @@ h1{
     top: 100%;
     left: 0;
     max-width: 0;
-    /* transition: max-width 0.3s; */
-    /* border-bottom: 5px solid salmon; */
 }
 .notification-menu-height{
     max-width: 300px;
@@ -353,12 +367,12 @@ h1{
     border-radius: 5px;
 }
 .notification-menu-inner .online-list p .name-post{
-    font-size: 15px;
     font-weight: 600;
 }
 .notification-menu-inner .online-list .dess{
+    font-size: 14px;
     width: 160px;
-    height: 40px; 
+    height: 35px; 
     overflow: hidden;
     text-overflow: ellipsis; 
 }
@@ -370,8 +384,9 @@ h1{
 .notification-menu-inner .online::after{
     display: none;
 }
-.notification-menu-inner .notifications h3{
+.notification-menu-inner .notifications .news h3{
     margin-bottom: 5px;
+    font-size: 15px;
 }
 .notification-menu-inner .notifications .news{
     display: flex;
@@ -384,4 +399,106 @@ h1{
 .notification-menu-inner .notifications .news a{
     text-decoration: none;
     color: salmon;
+    font-size: 13.5px;
+}
+.wrapper_sidebar_title {
+    height: 55px;
+    width: 233px;
+    overflow: hidden;
+}
+.wrapper_sidebar_title .add_button p {
+    height: 20px;
+    width: 205px;
+    overflow: hidden;
+    font-size: 15px;
+}
+.wrapper_sidebar_title .add_button button{
+    margin-top: 5px;
+    padding: 5px 5px;
+    width: 85px;
+    background: salmon;
+    color: #fff ;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.wrapper_sidebar_title .add_button button:hover{
+    opacity: .9;
+}
+
+/* search  */
+#searchss{
+    display: none;
+    position: fixed;
+    top: 50px;
+    z-index: 1;
+    width: 100%; 
+    height: 100%;
+}
+.search_friend{
+    color:darkgray;
+    font-weight: 600;
+}
+#myUL{
+    overflow: auto;
+    list-style-type: none;
+    border-radius: 8px;
+    width: 450px;
+    height: 378px;
+    background-color: var(--bg-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 12px;
+}
+#myUL li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 7px;
+    cursor: pointer;
+}
+#myUL li a {
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  display: block
+}
+#myUL li:hover {
+    background-color: var(--cmt-color);
+    border-radius: 10px;
+}
+#myUL li:hover .fa-xmark{
+    display: block;
+    width: 15px;
+    color: var(--color-color);
+}
+#myUL li .fa-xmark{
+    display: none;
+    cursor: pointer;
+}
+.searchss .searchs_list{
+    display: flex;
+    align-items:center ;
+    cursor: pointer;
+    padding: 7px 0; 
+}
+.searchss .searchs_list .searchs_img img{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.searchss .searchs_list .searchs_des {
+    white-space: nowrap; 
+    margin-left: 10px;
+    /* width: 150px;  */
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    color: var(--color-color);
+}
+.searchss .searchs_list .searchs_des p{
+    margin-top: 3px;
+    font-size: 12px;
+}
+.searchss .searchs_list .searchs_des h5{
+    font-size: 14px;
 }

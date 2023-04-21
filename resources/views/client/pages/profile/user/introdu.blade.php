@@ -8,7 +8,7 @@
         <main>
             <div class="container_intro">
                 <div class="wrapper_intro">
-                    <h3>Introduce</h3>
+                    <h3>Giới thiệu</h3>
                     <div class="app_content_intro">
                         @if ($pro_user['userId'] == $_COOKIE['user'])
                             <ul class="tabs_intro">
@@ -26,86 +26,78 @@
                                 <div class="containers_intro">
                                     <ul>
                                         <li>
-                                            <span><i class="fa-solid fa-briefcase"></i>Director at 99media Ltd</span>
-                                            <span onclick="confirm('Removed !!')"><i
-                                                    class="fa-solid fa-trash-can"></i></span>
+                                            <span><i class="fa-solid fa-briefcase"></i>Làm việc tại nhà</span> 
+                                            <span onclick="confirm('Removed !!')"><i class="fa-solid fa-trash-can"></i></span>
                                         </li>
                                         <li>
-                                            <span><i class="fa-solid fa-building-columns"></i>Studied at Amity
-                                                University</span>
-                                            <span onclick="confirm('Removed !!')"><i
-                                                    class="fa-solid fa-trash-can"></i></span>
+                                            <span><i class="fa-solid fa-building-columns"></i>Từng học tại Trường Hutech</span>
+                                             <span onclick="confirm('Removed !!')"><i class="fa-solid fa-trash-can"></i></span>
+                                            </li>
+                                        <li>
+                                            <span><i class="fa-solid fa-graduation-cap"></i>Từng học tại THPT Cần Đước</span> 
+                                            <span onclick="confirm('Removed !!')"> <i class="fa-solid fa-trash-can"></i></span>
                                         </li>
                                         <li>
-                                            <span><i class="fa-solid fa-graduation-cap"></i>Went to DPS Delhi</span>
-                                            <span onclick="confirm('Removed !!')"> <i
-                                                    class="fa-solid fa-trash-can"></i></span>
+                                            <span><i class="fa-solid fa-house"></i>Sống tại Tp.HCM , Việt Nam</span> 
+                                            <span onclick="confirm('Removed !!')"><i class="fa-solid fa-trash-can"></i></span>
                                         </li>
                                         <li>
-                                            <span><i class="fa-solid fa-house"></i>Lives in HCM CITY, VIETNAM</span>
-                                            <span onclick="confirm('Removed !!')"><i
-                                                    class="fa-solid fa-trash-can"></i></span>
+                                            <span><i class="fa-solid fa-heart"></i>Độc thân</span> 
+                                            <span onclick="confirm('Removed !!')"><i class="fa-solid fa-trash-can"></i></span>
                                         </li>
-                                        <li>
-                                            <span><i class="fa-solid fa-heart"></i>Single</span>
-                                            <span onclick="confirm('Removed !!')"><i
-                                                    class="fa-solid fa-trash-can"></i></span>
-                                        </li>
-                                    </ul>
+                                    </ul> 
                                 </div>
-                            </div>
+                            </div>    
                             <div class="tabcontent_intro" id="content_2_intro">
                                 <div class="containers_intro">
                                     <form action="" class="form_intro">
                                         <div class="edit_intro">
                                             <div class="label">
-                                                <label for="workplace"><b>Workplace</b></label><br>
-                                                <input type="text" class="input_intro" id="workplace" name="workplace"
-                                                    value=""><br>
+                                                <label for="workplace"><b>Làm việc tại</b></label><br>
+                                                <input type="text" class="input_intro" id="workplace" name="workplace" value=""><br>
                                             </div>
-
+        
                                             <div class="label">
-                                                <label for="university"><b>University</b></label><br>
-                                                <input type="text" class="input_intro" id="university" name="university"
-                                                    value=""><br>
+                                                <label for="university"><b>Học đại học</b></label><br>
+                                                <input type="text" class="input_intro" id="university" name="university" value=""><br>
                                             </div>
-
+        
                                             <div class="label">
-                                                <label for="graduate"><b>Graduate</b></label><br>
-                                                <input type="text" class="input_intro" id="graduate" name="graduate"
-                                                    value=""><br>
+                                                <label for="graduate"><b>Tốt Nghiệp</b></label><br>
+                                                <input type="text" class="input_intro" id="graduate" name="graduate" value=""><br>
                                             </div>
-
+        
                                             <div class="label">
-                                                <label for="liveat"><b>Live at</b></label><br>
-                                                <input type="text" class="input_intro" id="liveat" name="liveat"
-                                                    value=""><br>
+                                                <label for="liveat"><b>Sống tại</b></label><br>
+                                                <input type="text" class="input_intro" id="liveat" name="liveat" value=""><br>
                                             </div>
-
+                                                                                                                                
                                             <div class="label">
-                                                <label for="status"><b>Status</b></label><br>
+                                                <label for="status"><b>Trạng thái</b></label><br>
                                                 <select name="" id="status">
                                                     {{-- doc than --}}
-                                                    <option value="single">Single</option>
+                                                    <option value="single">Độc thân</option> 
                                                     {{-- hen ho --}}
-                                                    <option value="dating">Dating</option>
+                                                    <option value="dating">Hẹn hò</option>
                                                     {{-- da ket hon --}}
-                                                    <option value="married">Married</option>
+                                                    <option value="married">Kết hôn</option>
                                                     {{-- có một mối quan hệ phức tạp --}}
-                                                    <option value="relationship">Have a complicated relationship</option>
+                                                    <option value="relationship">Có một mối quan hệ phức tạp</option>
+                                                    {{-- <option value=""></option> --}}
                                                 </select><br>
                                             </div>
+        
                                             <div class="submit_intro">
-                                                <input class="input_intro" type="submit" id="button_intro" value="Save">
+                                                <input class="input_intro" type="submit" id="button_intro" value="Lưu">
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div>   
+                            </div> 
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
-    </div>
+            </main>
+        </div>
 @endsection

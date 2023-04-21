@@ -3,12 +3,12 @@
 @endsection
 <div class="profile-container">
     <div class="cover-img">
-        <img src="{{ $pro_user['anhBia'] }}">
+        <img src="{{ $pro_user['anhBia'] }}" alt="">
     </div>
     <div class="profile-details">
         <div class="pd-left">
             <div class="pd-row">
-                <img class="pd-img" src="{{ $pro_user['avatar'] }}">
+                <img class="pd-img" src="{{ $pro_user['avatar'] }}" alt="">
                 <div>
                     <h3>{{ $pro_user['fullName'] }}</h3>
                     @if ($pro_user['friend'] > 0)
@@ -16,7 +16,7 @@
                     @endif
                     <div class="friends_details">
                         @foreach (array_slice($friend, 0, 4) as $item)
-                            <a href="{{ route('profile', $item['userId']) }}"><img src="{{ $item['avatar'] }}"></a>
+                            <a href="{{ route('profile', $item['userId']) }}"><img src="{{ $item['avatar'] }}" alt=""></a>
                         @endforeach
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             <div class="img_user">
                                 <h3>Ảnh đại diện </h3>
                                 <div class="img_container">
-                                    <img id="img_user" src="{{ $pro_user['avatar'] }}" class="avatar">
+                                    <img id="img_user" src="{{ $pro_user['avatar'] }}" class="avatar" alt="">
                                 </div>
                             </div>
                             <input type="file" name="file" class="file_user" id="file_avatar">
@@ -45,7 +45,7 @@
                             <div class="img_user">
                                 <h3>Ảnh bìa</h3>
                                 <div class="cover_imgcontainer">
-                                    <img id="img_cover" src="{{ $pro_user['anhBia'] }}" class="cover_img">
+                                    <img id="img_cover" src="{{ $pro_user['anhBia'] }}" class="cover_img" alt="">
                                 </div>
                             </div>
                             <input type="file" name="file" class="file_cover" id="file_cover">
@@ -91,6 +91,8 @@
             </div>
         @endif
     </div>
+    <div class="border_bottom"></div>
+
     {{--  --}}
     <div class="profile-details" style="border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;">
         <ul class="pd-bottom">
@@ -101,7 +103,7 @@
                 <a href="{{ route('introduce', $pro_user['userId']) }}">Giới thiệu</a>
             </li>
             <li class="">
-                <a href="{{ route('friend', $pro_user['userId']) }}">Bạn bè</a>
+                <a href="{{ route('userfriend', $pro_user['userId']) }}">Bạn bè</a>
             </li>
             <li class="">
                 <a href="{{ route('image', $pro_user['userId']) }}">Ảnh</a>
