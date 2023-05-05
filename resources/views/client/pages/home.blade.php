@@ -53,8 +53,8 @@
         <div class="right-sidebar">
             @if ($friend_req != null)
                 <div class="sidebar-title">
-                    <h4>Yêu cầu kết bạn</h4>
-                    <a href="#">Xem</a>
+                    <h4>Lời mời kết bạn</h4>
+                    <a href="{{ route('friend')}}">Xem</a>
                 </div>
                 @foreach ($friend_req as $item)
                     <div class="add-sidebar-title">
@@ -75,7 +75,7 @@
             @endif
             <!-- ---- -->
             <div class="sidebar-title">
-                <h4>Đang hoạt động</h4>
+                <h4>Bạn bè</h4>
                 <div class="sidebar-search">
                     <div id="search-messenger">
                         <button type="button" id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>

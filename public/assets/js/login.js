@@ -18,7 +18,7 @@ function sdt() {
   
   function login() {
     var pass = document.getElementById("pass").value;
-    fetch("https://localhost:7126/Login?email=" + document.getElementById("email").value + "&pass=" + pass)
+    fetch("http://116.108.153.26/Login?email=" + document.getElementById("email").value + "&pass=" + pass)
       .then(function(response) {
         if (response.ok) {
           //console.log(response.statusText);

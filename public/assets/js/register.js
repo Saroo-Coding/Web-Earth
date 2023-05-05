@@ -12,7 +12,7 @@ function logKey() {
     }
 }
 
-var url = "https://localhost:7126/";
+var url = "http://116.108.153.26/";
 function register() {
     var name = document.getElementById("firstname").value +" "+ document.getElementById("lastname").value;
     var email = document.getElementById("email").value;

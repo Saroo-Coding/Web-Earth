@@ -18,9 +18,5 @@
             <span><i class="fa-solid fa-user-check"></i> Tất cả bạn bè</span>
             <span class="nextfr"><i class="fa-solid nexts fa-chevron-right"></i></span>
         </a>
-        {{-- <a href="{{ route('allgroups.friend')}}" class="{{ Request::route()->getName() === 'allgroups.friend' ? 'active': '' }}">
-            <span><i class="fa-solid fa-users-line"></i> Tất cả groups</span>
-            <span class="nextfr"><i class="fa-solid nexts fa-chevron-right"></i></span>
-        </a> --}}
     </div>
 </div>

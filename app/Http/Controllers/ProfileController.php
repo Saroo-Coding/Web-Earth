@@ -12,7 +12,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -31,7 +31,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -50,7 +50,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -69,7 +69,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();

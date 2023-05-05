@@ -45,7 +45,7 @@
         integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
     </script>
 
-    <script>
+    {{-- <script>
         let ip = '127.0.0.1';
         let socket_port = '3000';
         const socket = io(ip + ':' + socket_port);//{transports: ['websocket'], upgrade: false} ko dung http polling
@@ -81,7 +81,7 @@
             document.getElementById("user-cmt_" + cmt.postId).insertAdjacentHTML("afterend", html);
             document.getElementById("count_cmt_" + cmt.postId).innerHTML = parseInt(document.getElementById("count_cmt_" + cmt.postId).innerHTML) + 1;
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

@@ -1,5 +1,3 @@
-
-
 const tabBtns = document.querySelectorAll('.tab_img li');
 const tabContent = document.querySelectorAll('.tabs');
 const handleTabBtnClick = (tab) =>{

@@ -95,10 +95,12 @@
                                 id="{{ $item['postId'] }}-count-heart">{{ $item['like'] }}</span> </div>
                     @endif
                     <!-- comment -->
-                    <div class="comments" onclick="document.getElementById('{{ $item['postId'] }}').style.display='block'">
-                        <i class="fa-solid fa-message"></i>
-                        <span id="count_cmt_{{ $item['postId'] }}">{{ $item['cmt'] }}</span>
-                    </div>
+                    @if (in_array($user['userId'],array_column($group['member'],'userId')))
+                        <div class="comments" onclick="document.getElementById('{{ $item['postId'] }}').style.display='block'">
+                            <i class="fa-solid fa-message"></i>
+                            <span id="count_cmt_{{ $item['postId'] }}">{{ $item['cmt'] }}</span>
+                        </div>
+                    @endif
                     <!-- end comment -->
                     {{-- <div class="shares"><i class="fa-solid fa-share"></i> <span>0</span></div> --}}
                 </div>

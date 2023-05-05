@@ -12,7 +12,7 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();
@@ -27,7 +27,7 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();
@@ -42,7 +42,7 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "https://localhost:7126/";
+            $url = "http://116.108.153.26/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();

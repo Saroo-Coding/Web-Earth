@@ -51,16 +51,16 @@ function postrighsMenuToggle(id) {
     document.getElementById('post_' + id).classList.toggle("post-right-menu-height");
 }
 
-document.getElementById('logout').onclick = function(){
+document.getElementById('logout').onclick = function () {
     document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     location.reload();
 
 };
 
-var url = "https://localhost:7126/";
-//post
-function new_cmt(postId) {
+var url = "http://116.108.153.26/";
+//post 
+async function new_cmt(postId) {
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
     var name = document.getElementById("user_name").textContent;
@@ -76,12 +76,27 @@ function new_cmt(postId) {
             data: JSON.stringify({ postId: postId, userId: cookie.user, content: content }),
             success: function () {
                 //gui cmt len sever
-                socket.emit('send_Cmt',{img:img,content:content,postId:postId,name:name});
+                //socket.emit('send_Cmt',{img:img,content:content,postId:postId,name:name});
+                let html = `
+                <div id="user-cmt" class="user-cmt">
+                    <img id="img_cmt" src="${img}">
+                    <div class="name-user">
+                        <div class="user-container">
+                            <div class="name-user-cmt">
+                                <h4>${name}</h4>
+                                <p class="cmtt">${content}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                document.getElementById("cmt_" + postId).value = "";
+                document.getElementById("user-cmt_" + postId).insertAdjacentHTML("afterend", html);
+                document.getElementById("count_cmt_" + postId).innerHTML = parseInt(document.getElementById("count_cmt_" + postId).innerHTML) + 1;
             },
         });
     }
 }
-function delete_post(id) {
+async function delete_post(id) {
     $.ajax({
         url: url + "Newsfeed/XoaPost/" + id,
         type: 'DELETE',
@@ -95,8 +110,8 @@ function delete_post(id) {
         }
     });
 }
-function heart(id){
-    if(document.getElementById(id + '-heart').classList.contains('fa-solid') == false){
+async function heart(id) {
+    if (document.getElementById(id + '-heart').classList.contains('fa-solid') == false) {
         $.ajax({
             url: url + "Newsfeed/NewLike",
             type: 'POST',
@@ -114,7 +129,7 @@ function heart(id){
             }
         });
     }
-    else{
+    else {
         $.ajax({
             url: url + "Newsfeed/UnHeart",
             type: 'DELETE',
@@ -133,8 +148,9 @@ function heart(id){
         });
     }
 }
+
 //friend_request
-function add_friend_req(id) {
+async function add_friend_req(id) {
     $.ajax({
         url: url + "Newsfeed/Add_Friend",
         type: 'POST',
@@ -151,7 +167,7 @@ function add_friend_req(id) {
         }
     });
 }
-function un_friend_req(id) {
+async function un_friend_req(id) {
     $.ajax({
         url: url + "Newsfeed/Unfriend/" + id,
         type: 'DELETE',
@@ -166,10 +182,25 @@ function un_friend_req(id) {
         }
     });
 }
+
 //responce_friend
-function addfriend(id) {
+async function addfriend(id) {
+    $.ajax({
+        url: url + "Newsfeed/Answers_Friend/" + id,
+        type: 'POST',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        contentType: "application/json;charset=utf-8",
+        error: function (err) {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Kết bạn thành công !!!");
+            location.reload();
+        }
+    });
 }
-function unfriend(me, you) {
+async function unfriend(me, you) {
     $.ajax({
         url: url + "Newsfeed/XoaBan/" + me + "/" + you,
         type: 'DELETE',
@@ -185,8 +216,76 @@ function unfriend(me, you) {
     });
 }
 
+//Join group
+async function join_group_req(group_id){
+    $.ajax({
+        url: url + "Groups/JoinReq",
+        type: 'POST',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({ groupId:group_id, userId: cookie.user }),
+        error: function () {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Đã gửi yêu cầu tham gia nhóm !!!");
+            location.reload();
+        }
+    });
+}
+async function undo_req(group_id){
+    $.ajax({
+        url: url + "Groups/DeleteJoinReq",
+        type: 'DELETE',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({ groupId:group_id, userId: cookie.user }),
+        error: function () {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Đã hủy yêu cầu join nhóm !!!");
+            location.reload();
+        }
+    });
+}
+async function join_group(req_id){
+    $.ajax({
+        url: url + "Groups/NewMember/" + req_id,
+        type: 'POST',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        error: function () {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Đã chấp nhận tham gia nhóm !!!");
+            // location.reload();
+        }
+    });
+}
+async function leave_group(group_id){
+    $.ajax({
+        url: url + "Groups/LeaveGroup",
+        type: 'DELETE',
+        headers: { Authorization: 'Bearer ' + cookie.token },
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify({ groupId:group_id, userId: cookie.user }),
+        error: function () {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            alert("Đã rời khỏi nhóm !!!");
+            location.reload();
+        }
+    });
+}
+
 //post_group
-function delete_post_group(id) {
+async function delete_post_group(id) {
     $.ajax({
         url: url + "Groups/DeletePost/" + id,
         type: 'DELETE',
@@ -200,8 +299,8 @@ function delete_post_group(id) {
         }
     });
 }
-function heart_group(id){
-    if(document.getElementById(id + '-heart').classList.contains('fa-solid') == false){
+async function heart_group(id) {
+    if (document.getElementById(id + '-heart').classList.contains('fa-solid') == false) {
         $.ajax({
             url: url + "Groups/NewLike",
             type: 'POST',
@@ -219,7 +318,7 @@ function heart_group(id){
             }
         });
     }
-    else{
+    else {
         $.ajax({
             url: url + "Groups/UnHeart",
             type: 'DELETE',
@@ -238,7 +337,7 @@ function heart_group(id){
         });
     }
 }
-function new_cmt_group(postId) {
+async function new_cmt_group(postId) {
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
     var name = document.getElementById("user_name").textContent;
@@ -253,8 +352,21 @@ function new_cmt_group(postId) {
             headers: { Authorization: 'Bearer ' + cookie.token },
             data: JSON.stringify({ postId: postId, userId: cookie.user, content: content }),
             success: function () {
-                //gui cmt len sever
-                socket.emit('send_Cmt',{img:img,content:content,postId:postId,name:name});
+                let html = `
+                <div id="user-cmt" class="user-cmt">
+                    <img id="img_cmt" src="${img}">
+                    <div class="name-user">
+                        <div class="user-container">
+                            <div class="name-user-cmt">
+                                <h4>${name}</h4>
+                                <p class="cmtt">${content}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                document.getElementById("cmt_" + postId).value = "";
+                document.getElementById("user-cmt_" + postId).insertAdjacentHTML("afterend", html);
+                document.getElementById("count_cmt_" + postId).innerHTML = parseInt(document.getElementById("count_cmt_" + postId).innerHTML) + 1;
             },
         });
     }

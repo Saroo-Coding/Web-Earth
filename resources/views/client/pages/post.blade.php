@@ -145,7 +145,7 @@
                             </div>
                             <div class="reply-cmt">
                                 <img src="{{ $pro_user['avatar'] }}" alt="">
-                                <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Write a comment..."></textarea>
+                                <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Viết bình luận..."></textarea>
                                 <div onclick="new_cmt({{ $item['postId'] }})" class="post-btn">Post</div>
                             </div>
                         </div>
