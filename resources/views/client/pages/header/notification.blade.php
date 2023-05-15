@@ -1,96 +1,48 @@
-
 <li class="notification">
     <div class="icon-mes" onclick="notificationMenuToggle()">
         <i class="fa-regular fa-bell"></i>
+        <span class="qty_tb" id="qty_tb"></span>
     </div>
-    <div class="notification-menu">
+    <div id="notification-menu" class="notification-menu">
         <div class="container-ms">
             <div class="notification-menu-inner">
-                {{-- -------------------------------new--------------------- --}}
-                <div class="notifications">
-                    <div class="news">
-                        <h3>New</h3>
-                        <a href="#">See All</a>
-                    </div>
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
+                <div class="news">
+                    <h2>Thông báo</h2>
                 </div>
-                {{-- -------------------------------end new--------------------- --}}
-
-                {{-- -------------------------------before--------------------- --}}
-                <div class="notifications">
-                    <div class="news">
-                        <h3>Before</h3>
-                        <a href="#">See All</a>
-                    </div>
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
-                    
-                    {{-- text --}}
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
-                    
-                    {{-- text --}}
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
-                    {{-- text --}}
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
-                    {{-- text --}}
-                    <div class="online-list">
-                        <div class="online">
-                            <img src="{{asset('img/1.jpg')}}" alt="">
-                        </div>
-                        <p class="dess">
-                            <span class="name-post">Alison Mina</span> 
-                            <span class="tt">shared 
-                                <a href="#" class="name">Jackson</a> post dd dd sss sssss sssss ddd </span>
-                        </p>
-                    </div>
+                <div id="notifications" class="notifications">
+                    @foreach ($notify as $item)
+                        @if ($item['status'] == 0)
+                            <div id="notSeen_{{$item['id']}}" class="online-list notSeen">
+                                <div class="online">
+                                    <a href="{{ route('profile', $item['fromUser']) }}">
+                                        <img src="{{ $item['avatar'] }}" alt="">
+                                    </a>
+                                </div>
+                                <p class="dess">
+                                    <span class="name-post">{{ $item['fullName'] }}</span>
+                                    <span class="tt">{{ $item['content'] }}</span>
+                                </p>
+                                <i class="fa-solid fa-xmark" style="background-color: #eee;" onclick="deleteNotify({{$item['id']}})"></i>
+                            </div>
+                        @else
+                            <div id="notSeen_{{$item['id']}}" class="online-list"
+                                style="padding:10px;margin-bottom: 10px;border-radius: 10px;">
+                                <div class="online">
+                                    <img src="{{ $item['avatar'] }}" alt="">
+                                </div>
+                                <p class="dess">
+                                    <span class="name-post">{{ $item['fullName'] }}</span>
+                                    <span class="tt">{{ $item['content'] }}</span>
+                                </p>
+                                <i class="fa-solid fa-xmark" onclick="deleteNotify({{$item['id']}})"></i>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
-                {{-- -------------------------------end before--------------------- --}}
-
             </div>
         </div>
     </div>
-</li> 
+</li>
+<script>
+    document.getElementById('qty_tb').innerHTML = document.getElementsByClassName("online-list notSeen").length;
+</script>

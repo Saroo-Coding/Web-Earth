@@ -17,8 +17,9 @@ class FriendController extends Controller
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $friend_req = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/FriendRequest/' . $id)->json();
-            return view('client.pages.friend.friend_home', [ 'user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'friend_req' => $friend_req]);
+            return view('client.pages.friend.friend_home', [ 'user' => $user, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'friend_req' => $friend_req]);
         }
     }
     public function requests()
@@ -31,8 +32,9 @@ class FriendController extends Controller
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $req_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/RequestFriend/' . $id)->json();
-            return view('client.pages.friend.request', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'req_friend' => $req_friend]);
+            return view('client.pages.friend.request', ['user' => $user, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'req_friend' => $req_friend]);
         }
     }
     public function suggestion()
@@ -45,9 +47,10 @@ class FriendController extends Controller
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $new_friend =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/NewFriend/' . $id)->json();
             
-            return view('client.pages.friend.suggestion', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'new_friend' => $new_friend]);
+            return view('client.pages.friend.suggestion', ['user' => $user, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'new_friend' => $new_friend]);
         }
     }
     public function listfriend()
@@ -60,8 +63,9 @@ class FriendController extends Controller
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
-            return view('client.pages.friend.listfriend', ['user' => $user, 'alluser' => $alluser, 'allgroup' => $allgroup, 'friend' => $friend]);
+            return view('client.pages.friend.listfriend', ['user' => $user, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'friend' => $friend]);
         }
     }
 }

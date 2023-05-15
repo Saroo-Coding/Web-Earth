@@ -19,7 +19,8 @@ class GroupController extends Controller
             $post = Http::withOptions(['verify' => false])->get($url . 'Groups/GroupPosts/' . $groupId)->json();
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
-            return view('client.pages.group.member', ['post' => $post, 'alluser' => $alluser, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
+            return view('client.pages.group.member', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
     public function postgroup($groupId){
@@ -34,7 +35,8 @@ class GroupController extends Controller
             $post = Http::withOptions(['verify' => false])->get($url . 'Groups/GroupPosts/' . $groupId)->json();
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
-            return view('client.pages.group.post-group', ['post' => $post, 'alluser' => $alluser, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
+            return view('client.pages.group.post-group', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
     public function file($groupId){
@@ -49,7 +51,8 @@ class GroupController extends Controller
             $post = Http::withOptions(['verify' => false])->get($url . 'Groups/GroupPosts/' . $groupId)->json();
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
-            return view('client.pages.group.file', ['post' => $post, 'alluser' => $alluser, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
+            return view('client.pages.group.file', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
 }

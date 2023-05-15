@@ -27,3 +27,33 @@ for (i = 0; i < closebtns.length; i++) {
     this.parentElement.style.display = 'none';
   });
 }
+
+const searchBar = document.querySelector(".users .search_messenger input");
+const searchBtn = document.querySelector(".users .search_messenger button");
+const usersList = document.querySelector(".users .users-list");
+
+
+searchBtn.onclick = () => {
+    searchBar.classList.toggle("active");
+    searchBar.focus();
+    searchBtn.classList.toggle('active');
+    searchBar.value = "";
+}
+  
+
+
+//search ở logo nhắn tin
+const searchInput = document.getElementById('search-input');
+const userList = document.querySelector('.users-list');
+
+searchInput.addEventListener('input', () => {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  for (const user of userList.children) {
+    const userName = user.querySelector('.details > span').textContent.toLowerCase();
+    const userMessage = user.querySelector('.details > p').textContent.toLowerCase();
+    const isMatched = userName.includes(searchTerm) || userMessage.includes(searchTerm);
+    
+    user.style.display = isMatched ? 'flex' : 'none';
+  }
+});

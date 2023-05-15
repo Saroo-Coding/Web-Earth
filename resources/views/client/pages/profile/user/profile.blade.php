@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="post-col">
-            @include('client.pages.post')
+            @include('client.pages.profile.user.pro-post')
         </div>
     </div>
 </body>

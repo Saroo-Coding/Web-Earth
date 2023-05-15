@@ -33,6 +33,7 @@
 
     {{-- -------------------- FOOTER ------------------------ --}}
     {{-- @include('client.blocks.footer'); --}}
+    @include('client.pages.chat')
     {{-- -------------------- END FOOTER ------------------------ --}}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -41,8 +42,7 @@
     <script src="{{ asset('assets/js/image.js') }}"></script>
     <script src="{{ asset('assets/js/introdu.js') }}"></script>
     <script src="{{ asset('assets/js/seach.js') }}"></script>
-    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
-        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous">
     </script>
 
     {{-- <script>

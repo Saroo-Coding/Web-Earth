@@ -1,8 +1,7 @@
 @if ($pro_user['userId'] == $_COOKIE['user'])
     <div class="write-post-container">
         <div class="user-profile">
-            <a href="{{ route('profile', $user['userId']) }}"><img id="user_img" src="{{ $user['avatar'] }}"
-                    alt=""></a>
+            <a href="{{ route('profile', $user['userId']) }}"><img id="user_img" src="{{ $user['avatar'] }}" alt=""></a>
             <div>
                 <div>
                     <a href="{{ route('profile', $user['userId']) }}">
@@ -26,13 +25,11 @@
             <img style="" id="preview_1" class="img_post_css" alt="">
 
             <div class="add-post-links">
-                <a href="#"><i class="fa-solid fa-video" style="color: red"></i> Live video </a>
+                <a href="#"><i class="fa-solid fa-video"></i> Live video </a>
                 <div style="margin-top: 3px;margin-right: 30px;" class="image-upload">
-                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i>
-                        Photo/Video</label>
-                </div>
-                <input type="file" name="file" id="file" style="display: none">
-
+                    <label style="font-size: 13px;" for="file"><i class="fa-solid fa-camera"></i> Photo/Video</label></div>
+                    <input type="file" name="file" id="file" style="display: none">
+                    
                 <a href="#"><i class="fa-regular fa-face-laugh"></i> Feling/Activity </a>
                 <button type="button" id="post_button" class="post-input">Post</button>
             </div>
@@ -58,6 +55,9 @@
                     @if ($item['accessModifier'] == 'Bạn bè')
                         <span class="time">{{ $item['datepost'] }} ' <i class="fa fa-users"></i></span>
                     @endif
+                    @if ($item['accessModifier'] == 'Chỉ mình t')
+                        <span class="time">{{ $item['datepost'] }} ' <i class="fa-solid fa-lock"></i></span>
+                    @endif
                 </div>
             </div>
             <div class="post-right">
@@ -69,9 +69,8 @@
                             <ul>
                                 <li><i class="fa-solid fa-bookmark"></i>Lưu bài viết</li>
                                 <li><i class="fa-regular fa-bell"></i>Bật thông báo</li>
-                                @if ($item['userId'] == $pro_user['userId'])
-                                    <li onclick="delete_post({{ $item['postId'] }})"><i
-                                            class="fa-solid fa-trash-can"></i>Xóa bài viết</li>
+                                @if ($user['userId'] == $pro_user['userId'])
+                                    <li onclick="delete_post({{ $item['postId'] }})"><i class="fa-solid fa-trash-can"></i>Xóa bài viết</li>
                                 @endif
 
                             </ul>
@@ -100,23 +99,18 @@
         @endif --}}
         <div class="post-row">
             <div class="activity-icons">
-                @if ($item['liked'] == true)
-                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})"
-                            class="fa-solid fa-heart fa-beat"></i> <span
-                            id="{{ $item['postId'] }}-count-heart">{{ $item['like'] }}</span> </div>
+                @if (in_array($user['userId'], array_column($item['like'], 'userId')))
+                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})" class="fa-solid fa-heart fa-beat"></i> <span id="{{ $item['postId'] }}-count-heart">{{count($item['like'])}}</span> </div>
                 @else
-                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})"
-                            class="fa-regular fa-heart fa-beat"></i> <span
-                            id="{{ $item['postId'] }}-count-heart">{{ $item['like'] }}</span> </div>
+                    <div class="like"> <i id="{{ $item['postId'] }}-heart" onclick="heart({{ $item['postId'] }})" class="fa-regular fa-heart fa-beat"></i> <span id="{{ $item['postId'] }}-count-heart">{{count($item['like'])}}</span> </div>
                 @endif
                 <!-- comment -->
                 <div class="comments" onclick="document.getElementById('{{ $item['postId'] }}').style.display='block'">
                     <i class="fa-solid fa-message"></i>
-                    <span id="count_cmt_{{ $item['postId'] }}">{{ count($item['comment']) }}</span>
+                    <span id="count_cmt_{{ $item['postId'] }}">{{count($item['comment'])}}</span>
                 </div>
                 <!-- end comment -->
-                <div class="shares"><i class="fa-solid fa-share" onclick="share({{ $item['postId'] }})"></i> <span
-                        id="count_share_{{ $item['postId'] }}">{{ $item['share'] }}</span></div>
+                <div class="shares"><i class="fa-solid fa-share"></i> <span>{{ $item['share'] }}</span></div>
             </div>
         </div>
         <!-- comment -->
@@ -126,69 +120,47 @@
                     <div class="name-cmt">
                         <h4>Bài viết của {{ $item['fullName'] }}</h4>
                     </div>
-                    <script>
-                        window.addEventListener('mouseup', function(event) {
-                            if (event.target == document.getElementById({{ $item['postId'] }})) {
-                                document.getElementById({{ $item['postId'] }}).style.display = 'none';
-                            }
-                        });
-                    </script>
-                    <div class="wrapper_posts">
-                        <div class="imgs">
-                            <div class="slideshow-container">
-                                <div class="mySlides">
-                                    <img onclick="showImg({{ $item['postId'] }})" id="myImg_{{ $item['postId'] }}"
-                                        src="{{ $item['image1'] }}" alt="">
-                                </div>
-                            </div>
-                            <div id="myModal_{{ $item['postId'] }}" class="modal modal_post">
-                                <span class="close_image" onclick="document.getElementById('myModal_' + {{ $item['postId'] }}).style.display = 'none'">&times;</span>
-                                <img class="modal-content new new-2" id="img_{{ $item['postId'] }}" alt="">
-                                <div id="caption_{{ $item['postId'] }}"></div>
-                            </div>
-                        </div>
-                        <form>
-                            <div class="view-user">
-                                <div id="user-cmt_{{ $item['postId'] }}"></div>
-                                @foreach ($item['comment'] as $xyz)
-                                    <div class="user-cmt">
-                                        <img src="{{ $xyz['avatar'] }}" alt="">
-                                        <div class="name-user">
-                                            <div class="user-container">
-                                                <div class="name-user-cmt">
-                                                    <h4>{{ $xyz['fullName'] }}</h4>
-                                                    <p class="cmtt">{{ $xyz['content'] }}</p>
-                                                </div>
+                    <form>
+                        <div class="view-user">
+                            <!-- text cmt -->
+                            <div id="user-cmt_{{ $item['postId'] }}"></div>
+                            @foreach ($item['comment'] as $xyz)
+                                <div class="user-cmt">
+                                    <img src="{{ $xyz['avatar'] }}" alt="">
+                                    <div class="name-user">
+                                        <div class="user-container">
+                                            <div class="name-user-cmt">
+                                                <h4>{{ $xyz['fullName'] }}</h4>
+                                                <p class="cmtt">{{ $xyz['content'] }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <script>
-                                window.addEventListener('mouseup', function(event) {
-                                    if (event.target == document.getElementById({{ $item['postId'] }})) {
-                                        document.getElementById({{ $item['postId'] }}).style.display = 'none';
-                                    }
-                                });
-                            </script>
-                            <div class="replys-cmt">
-                                <div class="icon-cmt">
-                                    <i class="fa-regular fa-image"></i>
-                                    <i class="fa-regular fa-face-laugh"></i>
-                                    <i class="fa-solid fa-camera"></i>
                                 </div>
-                                <div class="reply-cmt">
-                                    <img src="{{ $pro_user['avatar'] }}" alt="">
-                                    <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Viết bình luận..."></textarea>
-                                    <div onclick="new_cmt({{ $item['postId'] }})" class="post-btn">Post</div>
-                                </div>
+                            @endforeach
+                        </div>
+                        <script>
+                            window.addEventListener('mouseup', function(event) {
+                                if (event.target == document.getElementById({{ $item['postId'] }})) {
+                                    document.getElementById({{ $item['postId'] }}).style.display = 'none';
+                                }
+                            });
+                        </script>
+                        <div class="replys-cmt">
+                            <div class="icon-cmt">
+                                <i class="fa-regular fa-image"></i>
+                                <i class="fa-regular fa-face-laugh"></i>
+                                <i class="fa-solid fa-camera"></i>
                             </div>
-                        </form>
-                    </div>
+                            <div class="reply-cmt">
+                                <img src="{{ $pro_user['avatar'] }}" alt="">
+                                <textarea id="cmt_{{ $item['postId'] }}" cols="3" rows="1" placeholder="Viết bình luận..."></textarea>
+                                <div onclick="new_cmt({{ $item['postId'] }})" class="post-btn">Post</div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- end comment -->
     </div>
 @endforeach
 

@@ -78,20 +78,28 @@
                 <h4>Bạn bè</h4>
                 <div class="sidebar-search">
                     <div id="search-messenger">
-                        <button type="button" id="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" name="" id="search-mes" placeholder="Tìm bạn bè...">
+                        <button type="button" title="seach" id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" name="" id="search-friends-home" placeholder="Tìm kiếm bạn bè...">             
                     </div>
                 </div>
             </div>
             <div class="sidebar-title-chat">
                 @foreach ($friend as $item)
                     <div class="online-list">
-                        <div id="onl-{{$item['userId']}}" class="online">
-                            <a href="{{ route('profile', $item['userId']) }}">
-                                <img src="{{$item['avatar']}}" alt="">
-                            </a>
-                        </div>
-                        <p>{{$item['fullName']}}</p>
+                        @if ($item['status'] == true)
+                            <div id="onl-{{$item['userId']}}" class="online online-dot">
+                                <a href="{{ route('profile', $item['userId']) }}">
+                                    <img id="avaName_{{$item['userId']}}" src="{{$item['avatar']}}" alt="">
+                                </a>
+                            </div>
+                        @else
+                            <div id="onl-{{$item['userId']}}" class="online">
+                                <a href="{{ route('profile', $item['userId']) }}">
+                                    <img id="avaName_{{$item['userId']}}" src="{{$item['avatar']}}" alt="">
+                                </a>
+                            </div>
+                        @endif
+                        <p id="chatName_{{$item['userId']}}" onclick="onclickShowChat({{ $item['userId'] }})">{{$item['fullName']}}</p>
                     </div>
                 @endforeach
             </div>

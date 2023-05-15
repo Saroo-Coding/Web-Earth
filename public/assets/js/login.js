@@ -29,6 +29,8 @@ function sdt() {
         return response.json();
       })
       .then(data => {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "token = " + data.refreshToken;
         document.cookie = "user = " + data.userId;
         window.location.href = "http://127.0.0.1:8000";   

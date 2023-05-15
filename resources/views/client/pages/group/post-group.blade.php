@@ -102,7 +102,7 @@
                         </div>
                     @endif
                     <!-- end comment -->
-                    {{-- <div class="shares"><i class="fa-solid fa-share"></i> <span>0</span></div> --}}
+                    <div class="shares"><i class="fa-solid fa-share" onclick="group_share({{ $item['postId'] }},{{$group['groupId']}})"></i> <span id="count_share_{{ $item['postId'] }}">{{ $item['share'] }}</span></div>
                 </div>
             </div>
             <!-- comment -->
