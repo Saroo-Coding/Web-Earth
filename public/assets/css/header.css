@@ -539,7 +539,6 @@ h1 {
 .wrapper_ms img {
     object-fit: cover;
     border-radius: 50%;
-    border: 1px solid black;
 }
 
 .wrapper_ms h3 {

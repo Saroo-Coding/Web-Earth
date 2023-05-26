@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
+    <link rel="shortcut icon" href="{{ asset('img/logo-E.png') }}" type="image/x-icon">
     <title>Earth</title>
 </head>
 
@@ -41,7 +41,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Mật khẩu</label>
-                    <input type="password" class="form-control" name="pass" id="pass" required>
+                    <input type="password" class="form-control" name="pass" id="pass" required autocomplete="off">
+                </div>
+                <div>
+                    <p style="text-align: right!important;margin-bottom: unset;"><a style="text-decoration: none;color: red;" href="{{ route('forgetPass') }}"> Quên mật khẩu</a></p>
                 </div>
                 <button type="submit" style="width:100%; font-size:23px"
                     class="btn my-3 text-white bg-danger">Submit</button>
@@ -55,7 +58,7 @@
             </script>
         </div>
     </div>
-    <script src="{{asset('assets/js/login.js')}}"></script>
+    <script src="{{ asset('assets/js/login.js') }}"></script>
 </body>
 
 </html>

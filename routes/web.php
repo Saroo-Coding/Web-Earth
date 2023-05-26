@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/Login', [EarthController::class, 'login'])->name('login');
 Route::get('/Register', [EarthController::class, 'register'])->name('register');
+Route::get('/ForgetPass', [EarthController::class, 'forget'])->name('forgetPass');
 
 // home
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('Setting', [HomeController::class, 'setting'])->name('setting');
+Route::get('Support', [HomeController::class, 'support'])->name('support');
+Route::get('Contribute', [HomeController::class, 'contribute'])->name('contribute');
 
 // CLIENT USER
 Route::get('Profile/{id}', [ProfileController::class, 'index'])->name('profile');

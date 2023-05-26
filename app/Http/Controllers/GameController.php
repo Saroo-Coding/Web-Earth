@@ -12,13 +12,14 @@ class GameController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
 
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $_COOKIE['user'])->json();//user chinh
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
-            return view('client.pages.game.GameHome',['user'=> $user, 'notify' => $notify, 'alluser' => $alluser, 'allgroup' => $allgroup] );
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
+            return view('client.pages.game.GameHome',['user'=> $user, 'notify' => $notify, 'alluser' => $alluser, 'listChat' => $listchat, 'allgroup' => $allgroup] );
         }
     }
     public function Menja()

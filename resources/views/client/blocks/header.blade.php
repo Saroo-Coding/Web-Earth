@@ -76,18 +76,18 @@
             <div class="user-profile">
                 <i class="fa-regular fa-message"></i>
                     <div>
-                        <p>Give Feedback</p>
-                        <a href="#">Help us to improve the new design</a>
+                        <a style="font-size: unset;color: black" href="{{route('contribute')}}">Give Feedback</a>
+                        {{-- <a href="{{route('contribute')}}">Help us to improve the new design</a> --}}
                     </div>
             </div>
             <hr>
             <div class="settings-links">
                 <i class="fa-solid setting-icon fa-gear"></i>
-                <a href="#">Settings & Privacy <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="{{ route('setting') }}">Settings & Privacy <i class="fa-solid fa-chevron-right"></i></a>
             </div>
             <div class="settings-links">
                 <i class="fa-solid fa-circle-question"></i>
-                <a href="#">Help & Support <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="{{ route('support') }}">Help & Support <i class="fa-solid fa-chevron-right"></i></a>
             </div>
             <div class="settings-links">
                 <i class="fa-solid fa-right-from-bracket"></i>

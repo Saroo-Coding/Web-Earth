@@ -14,4 +14,8 @@ class EarthController extends Controller
     public function register(){
         return view('client.pages.register');
     }
+
+    public function forget(){
+        return view('client.pages.forget');
+    }
 }

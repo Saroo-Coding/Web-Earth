@@ -126,10 +126,11 @@ function handleSearch() {
 //     dots1[slideIndex1 - 1].className += " active1";
 // }
 
-var url = "http://116.108.153.26/";
+var baseUrl = "http://116.108.44.227/";
 var chatToUser;
 //dang xuat
 document.getElementById('logout').onclick = function () {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Login/Logout/" + cookie.user,
         type: 'POST',
@@ -145,9 +146,93 @@ document.getElementById('logout').onclick = function () {
         }
     });
 };
+//Setting
+async function editName() {
+    var url = "http://116.108.44.227/";
+    var name = document.getElementById('Ho').value + ' ' + document.getElementById('Ten').value;
+    $.ajax({
+        url: url + "Account/EditName/" + cookie.user + "?name=" + name,
+        type: 'PUT',
+        headers: {
+            Authorization: 'Bearer ' + cookie.token
+        },
+        contentType: "application/json;charset=utf-8",
+        error: function (err) {
+            alert("Đã có lỗi xảy ra !!!")
+            location.reload();
+        },
+        success: function () {
+            document.getElementById('name').textContent = name;
+            document.getElementById('myForm').classList.add("hidden");
+        }
+    });
+}
+async function editSdt() {
+    var url = "http://116.108.44.227/";
+    var sdt = document.getElementById('phone').value;
+    if (sdt.length < 9) {
+        document.getElementById('errorSdt').style.display = 'block';
+    }
+    else {
+        if (sdt.length > 11) {
+            document.getElementById('errorSdt').style.display = 'block';
+        }
+        else {
+            $.ajax({
+                url: url + "Account/EditSdt/" + cookie.user + "?sdt=" + sdt,
+                type: 'PUT',
+                headers: {
+                    Authorization: 'Bearer ' + cookie.token
+                },
+                contentType: "application/json;charset=utf-8",
+                error: function (err) {
+                    alert("Đã có lỗi xảy ra !!!")
+                    location.reload();
+                },
+                success: function () {
+                    document.getElementById('sdt').textContent = sdt;
+                    document.getElementById('myFormPhone').classList.add("hidden");
+                    document.getElementById('phone').value = '';
+                }
+            });
+        }
+    }
+}
+async function editPass() {
+    var url = "http://116.108.44.227/";
+    var old = document.getElementById('old').value;
+    var pass = document.getElementById('new').value;
+    var repeat = document.getElementById('repeat').value;
+    if (pass != repeat) {
+        document.getElementById('noRepeat').style.display = 'block';
+    }
+    else {
+        fetch(url + "Account/EditPass/" + cookie.user + "?pass=" + old + "&newPass=" + pass, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, })
+            .then(function (response) {
+                if (response.status == 404) {
+                    document.getElementById('error').style.display = 'block';
+                    document.getElementById('old').value = '';
+                    document.getElementById('new').value = '';
+                    document.getElementById('repeat').value = '';
+                }
+                else {
+                    alert('Đã đổi mật khẩu !!!')
+                    document.getElementById('myFormPass').classList.add("hidden");
+                    document.getElementById('noRepeat').style.display = 'none';
+                    document.getElementById('old').value = '';
+                    document.getElementById('new').value = '';
+                    document.getElementById('repeat').value = '';
+                }
+                return response.json();
+            })
+
+    }
+
+}
 
 //check friend online
 setInterval(() => {
+    var url = "http://116.108.44.227/";
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url + "Account/MyFriend/" + cookie.user, true);
     xhr.onload = () => {
@@ -171,6 +256,7 @@ setInterval(() => {
 
 //gui thong bao
 setInterval(() => {
+    var url = "http://116.108.44.227/";
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url + "Newsfeed/Notify/" + cookie.user, true);
     xhr.onload = () => {
@@ -214,6 +300,7 @@ setInterval(() => {
 //click vào bạn bè hiện ô chat
 const showChat = document.getElementById('sidebars_chat');
 function onclickShowChat(toUser_id) {
+    var url = "http://116.108.44.227/";
     if (toUser_id != null) {
         document.getElementById("old").src = document.getElementById('avaName_' + toUser_id).src;
         document.getElementById("user_chat").innerHTML = document.getElementById('chatName_' + toUser_id).innerHTML;
@@ -263,6 +350,7 @@ function onclickShowChat(toUser_id) {
 
 //post 
 async function new_cmt(postId) {
+    var url = "http://116.108.44.227/";
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
     var name = document.getElementById("user_name").textContent;
@@ -297,6 +385,7 @@ async function new_cmt(postId) {
     }
 }
 async function delete_post(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/XoaPost/" + id,
         type: 'DELETE',
@@ -311,6 +400,7 @@ async function delete_post(id) {
     });
 }
 async function heart(id) {
+    var url = "http://116.108.44.227/";
     if (document.getElementById(id + '-heart').classList.contains('fa-solid') == false) {
         $.ajax({
             url: url + "Newsfeed/NewLike",
@@ -351,6 +441,7 @@ async function heart(id) {
 
 //friend_request
 async function add_friend_req(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/Add_Friend",
         type: 'POST',
@@ -368,6 +459,7 @@ async function add_friend_req(id) {
     });
 }
 async function un_friend_req(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/Unfriend/" + id,
         type: 'DELETE',
@@ -385,6 +477,7 @@ async function un_friend_req(id) {
 
 //responce_friend
 async function addfriend(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/Answers_Friend/" + id,
         type: 'POST',
@@ -401,6 +494,7 @@ async function addfriend(id) {
     });
 }
 async function unfriend(me, you) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/XoaBan/" + me + "/" + you,
         type: 'DELETE',
@@ -418,6 +512,7 @@ async function unfriend(me, you) {
 
 //Join group
 async function join_group_req(group_id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/JoinReq",
         type: 'POST',
@@ -434,7 +529,7 @@ async function join_group_req(group_id) {
         }
     });
 }
-async function undo_req(group_id) {
+async function undo_req(group_id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/DeleteJoinReq",
         type: 'DELETE',
@@ -451,7 +546,7 @@ async function undo_req(group_id) {
         }
     });
 }
-async function join_group(req_id) {
+async function join_group(req_id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/NewMember/" + req_id,
         type: 'POST',
@@ -466,7 +561,7 @@ async function join_group(req_id) {
         }
     });
 }
-async function leave_group(group_id) {
+async function leave_group(group_id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/LeaveGroup",
         type: 'DELETE',
@@ -485,7 +580,7 @@ async function leave_group(group_id) {
 }
 
 //post_group
-async function delete_post_group(id) {
+async function delete_post_group(id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/DeletePost/" + id,
         type: 'DELETE',
@@ -499,7 +594,7 @@ async function delete_post_group(id) {
         }
     });
 }
-async function heart_group(id) {
+async function heart_group(id) {var url = "http://116.108.44.227/";
     if (document.getElementById(id + '-heart').classList.contains('fa-solid') == false) {
         $.ajax({
             url: url + "Groups/NewLike",
@@ -537,7 +632,7 @@ async function heart_group(id) {
         });
     }
 }
-async function new_cmt_group(postId) {
+async function new_cmt_group(postId) {var url = "http://116.108.44.227/";
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
     var name = document.getElementById("user_name").textContent;
@@ -573,7 +668,7 @@ async function new_cmt_group(postId) {
 }
 
 //Share
-async function share(id) {
+async function share(id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/NewShare",
         type: 'POST',
@@ -590,7 +685,7 @@ async function share(id) {
         }
     });
 }
-async function group_share(postId, groupId) {
+async function group_share(postId, groupId) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/NewShare",
         type: 'POST',
@@ -608,6 +703,7 @@ async function group_share(postId, groupId) {
     });
 }
 async function un_share(id) {//tạo div mới lam vs group luon
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/DeleteShare/" + id,
         type: 'DELETE',
@@ -623,7 +719,7 @@ async function un_share(id) {//tạo div mới lam vs group luon
 }
 
 //Notify
-async function deleteNotify(id) {
+async function deleteNotify(id) {var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/XoaNotify/" + id,
         type: 'DELETE',
@@ -639,7 +735,7 @@ async function deleteNotify(id) {
 }
 
 //Chat 
-async function send_mess() {
+async function send_mess() {var url = "http://116.108.44.227/";
     const mess = document.getElementById('message');
     if (mess.value == '') {
         alert('Đã có lỗi xảy ra !!!');
@@ -660,5 +756,217 @@ async function send_mess() {
                 document.getElementById('btn_SendMess').style.display = 'none';
             }
         });
+    }
+}
+
+//dong gop y kien
+async function sendContribute() {
+    var fb = document.getElementById('subject').value;
+    var name = document.getElementById('name').innerHTML;
+    var email = document.getElementById('email').innerHTML;
+    if (fb == '') {
+        alert('Phản hồi không được để trống !!!');
+    }
+    else {
+        let html = `
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=device-width">
+            <style type="text/css">
+                body,
+                html {
+                    margin: 0px;
+                    padding: 0px;
+                    -webkit-font-smoothing: antialiased;
+                    text-size-adjust: none;
+                    width: 100% !important;
+                }
+                #outlook a { padding: 0px; }
+                .ExternalClass,
+                .ExternalClass p,
+                .ExternalClass span,
+                .ExternalClass font,
+                .ExternalClass td,
+                .ExternalClass div { line-height: 100%; }
+                .ExternalClass { width: 100%; }
+                @media only screen and (max-width: 480px) {
+                    table tr td table.edsocialfollowcontainer { width: auto !important; }
+                    table,table tr td,table td { width: 100% !important; }
+                    img { width: inherit; }
+                    .layer_2 { max-width: 100% !important; }
+                    .edsocialfollowcontainer table { max-width: 25% !important; }
+                    .edsocialfollowcontainer table td { padding: 10px !important; }
+                }
+            </style>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css">
+        </head>
+        <body style="padding:0; margin: 0;background: #efefef">
+            <table style="height: 100%; width: 100%; background-color: #efefef;" align="center">
+                <tbody>
+                    <tr>
+                        <td valign="top" id="dbody" data-version="2.31" style="width: 100%; height: 100%; padding-top: 30px; padding-bottom: 30px; background-color: #efefef;">
+                            <table class="layer_1" align="center" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px; box-sizing: border-box; width: 100%; margin: 0px auto;">
+                                <tbody>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="emptycell" style="padding: 10px;">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="edimg" style="padding: 0px; box-sizing: border-box; text-align: center;">
+                                                                <img src="https://api.elasticemail.com/userfile/a18de9fc-4724-42f2-b203-4992ceddc1de/geometric_divider1.png" alt="Image" width="576" style="border-width: 0px; border-style: none; max-width: 576px; width: 100%;">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                                                                <p class="style1 text-center"
+                                                                    style="text-align: center; margin: 0px; padding: 0px; color: #f24656; font-size: 36px; font-family: Helvetica, Arial, sans-serif;">
+                                                                    <strong>Feedback
+                                                                    </strong>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                                                                <p style="margin: 0px; padding: 0px;">Phản hồi góp ý của ${name}</p>
+                                                                <p style="margin: 0px; padding: 0px;">${fb}</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody><tr><td valign="top" class="emptycell" style="padding: 20px;"></td></tr></tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #f24656; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent"
+                                                    style="border-collapse: collapse;width:100%">
+                                                    <tbody><tr><td valign="top" class="emptycell" style="padding: 10px;"></td></tr></tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #f24656; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #f24656; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="emptycell" style="padding: 10px;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 14px; font-family: Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;">
+                                                                <p style="margin: 0px; padding: 0px;">Mọi thắc mắc hãy liên hệ:  <a href="#" style="color: #16c2d0; font-size: 14px; font-family: Helvetica, Arial, sans-serif; text-decoration: none;">congdanh785@gmail.com</a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;">
+                                            <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;">
+                                                <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="top" class="edimg" style="padding: 0px; box-sizing: border-box; text-align: center;">
+                                                                <img src="https://api.elasticemail.com/userfile/a18de9fc-4724-42f2-b203-4992ceddc1de/geometric_footer1.png" alt="Image" width="587" style="border-width: 0px; border-style: none; max-width: 587px; width: 100%;">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </body>
+        </html>
+        `;
+        Email.send({
+            SecureToken: "66bf1cea-e665-4688-bd87-b88e6d88becc",
+            To: "congdanh785@gmail.com",
+            From: email,
+            Subject: "Welcome To Earth",
+            Body: html
+        }).then(
+            message => {
+                document.getElementById('container_contribute').style.display = 'none';
+                document.getElementById('thongbao').style.display = 'block';
+            }
+        );
     }
 }

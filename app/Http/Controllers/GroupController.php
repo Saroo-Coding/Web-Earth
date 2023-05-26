@@ -12,7 +12,7 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();
@@ -20,7 +20,8 @@ class GroupController extends Controller
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
-            return view('client.pages.group.member', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
+            return view('client.pages.group.member', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
     public function postgroup($groupId){
@@ -28,15 +29,16 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Groups/GroupPosts/' . $groupId)->json();
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
-            return view('client.pages.group.post-group', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            return view('client.pages.group.post-group', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
     public function file($groupId){
@@ -44,15 +46,16 @@ class GroupController extends Controller
             return view('client.pages.login');
         } else {
             $id = $_COOKIE['user'];
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             
             $user =  Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $group = Http::withOptions(['verify' => false])->get($url . 'Groups/Groups/' . $groupId)->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Groups/GroupPosts/' . $groupId)->json();
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
-            return view('client.pages.group.file', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
+            return view('client.pages.group.file', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user,'group' => $group]);
         }
     }
 }

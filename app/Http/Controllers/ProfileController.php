@@ -12,7 +12,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -20,10 +20,11 @@ class ProfileController extends Controller
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
             $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckAddFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.profile', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.profile', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 
@@ -32,7 +33,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -40,10 +41,11 @@ class ProfileController extends Controller
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
             $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.introdu', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.introdu', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 
@@ -52,7 +54,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -60,10 +62,11 @@ class ProfileController extends Controller
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
             $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.img', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.img', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 
@@ -72,7 +75,7 @@ class ProfileController extends Controller
         if (!isset($_COOKIE['user']) || !isset($_COOKIE['token'])) {
             return view('client.pages.login');
         } else {
-            $url = "http://116.108.153.26/";
+            $url = "http://116.108.44.227/";
             $alluser =  Http::withOptions(['verify' => false])->get($url . 'Newsfeed/AllUser/' . $id)->json();
             $allgroup =  Http::withOptions(['verify' => false])->get($url . 'Groups/Groups')->json();
             $post = Http::withOptions(['verify' => false])->get($url . 'Account/MyPost/' . $id)->json();
@@ -80,10 +83,11 @@ class ProfileController extends Controller
             $pro_user = Http::withOptions(['verify' => false])->get($url . 'Account/IsMe/' . $id)->json();
             $notify = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/Notify/' . $id)->json();
             $friend = Http::withOptions(['verify' => false])->get($url . 'Account/MyFriend/' . $id)->json();
+            $listchat = Http::withOptions(['verify' => false])->get($url . 'Account/ListChat/' . $id)->json();
             $me_you = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
             $you_me = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $id . '/' . $_COOKIE['user'])->json();
             $check_friend = Http::withOptions(['verify' => false])->get($url . 'Newsfeed/CheckFriend/' . $_COOKIE['user'] . '/' . $id)->json();
-            return view('client.pages.profile.user.friend', ['post' => $post, 'alluser' => $alluser, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
+            return view('client.pages.profile.user.friend', ['post' => $post, 'alluser' => $alluser, 'listChat' => $listchat, 'notify' => $notify, 'allgroup' => $allgroup, 'user' => $user, 'pro_user' => $pro_user, 'friend' => $friend, 'me_you' => $me_you, 'you_me' => $you_me, 'check_friend' => $check_friend]);
         }
     }
 }

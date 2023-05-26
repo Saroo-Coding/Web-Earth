@@ -76,17 +76,17 @@
                 {{-- can chua ket ban chua gui chua dong y --}}
                 @if ($check_friend != null){{-- da ket ban --}}
                     <button type="button" style="background: crimson;" onclick="unfriend({{$check_friend[0]['userId']}}, {{$check_friend[0]['addFriend']}})"><span><i class="fa-solid fa-plus"></i><i class="fa-solid fa-user"></i></span>Hủy kết bạn</button>
-                    <button type="button"><i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
+                    <button type="button" onclick="onclickShowChat({{ $pro_user['userId'] }})"><i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
                 @endif
                 
                 @if ($me_you != null){{-- Minh gui ket ban no --}}
                     <button type="button" style="background: crimson;" onclick="un_friend_req({{ $me_you['reqId'] }})"><span><i class="fa-solid fa-times"></i><i class="fa-solid fa-user"></i></span>Hủy yêu cầu</button>
-                    <button type="button"> <i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
+                    <button type="button" onclick="onclickShowChat({{ $pro_user['userId'] }})"> <i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
                 @endif
                 @if ($you_me != null){{-- No gui ket ban minh --}}
                     <button type="button" style="background: green;" onclick="addfriend({{ $you_me['reqId'] }})"><span><i class="fa-solid fa-check"></i><i class="fa-solid fa-user"></i></span>Đồng ý</button>
                     <button type="button" style="background: crimson;" onclick="un_friend_req({{ $you_me['reqId'] }})"><span><i class="fa-solid fa-times"></i><i class="fa-solid fa-user"></i></span>Từ chối</button>
-                    <button type="button"> <i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
+                    <button type="button" onclick="onclickShowChat({{ $pro_user['userId'] }})"> <i class="fa-solid fa-comment-dots"></i>Nhắn tin</button>
                 @endif
             </div>
         @endif
