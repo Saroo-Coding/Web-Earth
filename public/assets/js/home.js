@@ -350,39 +350,76 @@ function onclickShowChat(toUser_id) {
 
 //post 
 async function new_cmt(postId) {
-    var url = "http://116.108.44.227/";
-    var content = document.getElementById("cmt_" + postId).value;
-    var img = document.getElementById("user_img").src;
-    var name = document.getElementById("user_name").textContent;
-    if (content == '') {
-        alert('Hãy viết bình luận !!!')
-    }
-    else {
-        $.ajax({
-            type: "POST",
-            url: url + "Newsfeed/NewCmt",
-            contentType: "application/json;charset=utf-8",
-            headers: { Authorization: 'Bearer ' + cookie.token },
-            data: JSON.stringify({ postId: postId, userId: cookie.user, content: content }),
-            success: function () {
-                let html = `
-                <div id="user-cmt" class="user-cmt">
-                    <img id="img_cmt" src="${img}">
-                    <div class="name-user">
-                        <div class="user-container">
-                            <div class="name-user-cmt">
-                                <h4>${name}</h4>
-                                <p class="cmtt">${content}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-                document.getElementById("cmt_" + postId).value = "";
-                document.getElementById("user-cmt_" + postId).insertAdjacentHTML("afterend", html);
-                document.getElementById("count_cmt_" + postId).innerHTML = parseInt(document.getElementById("count_cmt_" + postId).innerHTML) + 1;
-            },
-        });
-    }
+    // var url = "http://116.108.44.227/";
+    // var content = document.getElementById("cmt_" + postId).value;
+    // var img = document.getElementById("user_img").src;
+    // var name = document.getElementById("user_name").textContent;
+    // if (content == '') {
+    //     alert('Hãy viết bình luận !!!')
+    // }
+    // else {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: url + "Newsfeed/NewCmt",
+    //         contentType: "application/json;charset=utf-8",
+    //         headers: { Authorization: 'Bearer ' + cookie.token },
+    //         data: JSON.stringify({ postId: postId, userId: cookie.user, content: content }),
+    //         success: function () {
+    //             let html = `
+    //             <div id="user-cmt" class="user-cmt">
+    //                 <img id="img_cmt" src="${img}">
+    //                 <div class="name-user">
+    //                     <div class="user-container">
+    //                         <div class="name-user-cmt">
+    //                             <h4>${name}</h4>
+    //                             <p class="cmtt">${content}</p>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>`;
+    //             document.getElementById("cmt_" + postId).value = "";
+    //             document.getElementById("user-cmt_" + postId).insertAdjacentHTML("afterend", html);
+    //             document.getElementById("count_cmt_" + postId).innerHTML = parseInt(document.getElementById("count_cmt_" + postId).innerHTML) + 1;
+    //         },
+    //     });
+    // }
+    const { NlpManager } = require('node-nlp');
+    const fs = require('fs');
+
+    // Đường dẫn đến tệp tin chứa dữ liệu huấn luyện
+    const trainingDataPath = 'comments.txt';
+
+    // Đọc dữ liệu huấn luyện từ tệp tin
+    const trainingData = fs.readFileSync(trainingDataPath, 'utf8').split('\n');
+
+    // Tạo một instance của NlpManager
+    const manager = new NlpManager({ languages: ['vi'] });
+
+    // Huấn luyện mô hình với dữ liệu
+    trainingData.forEach((comment) => {
+        manager.addDocument('vi', comment, 'negative');
+    });
+
+    // Huấn luyện mô hình
+    manager.train();
+
+    // Nhận xét cần phân loại
+    const comment = 'Đây là một comment tiêu cực';
+
+    // Phân loại nhận xét
+    manager.process('vi', comment).then((result) => {
+        const classification = result.intent;
+
+        if (classification === 'negative') {
+            // Tin nhắn là tiêu cực
+            // Thực hiện các hành động xử lý tiêu cực tại đây
+            console.log('Comment tiêu cực');
+        } else {
+            // Tin nhắn là tích cực hoặc không được phân loại
+            // Thực hiện các hành động xử lý tích cực tại đây
+            console.log('Comment tích cực hoặc không được phân loại');
+        }
+    });
 }
 async function delete_post(id) {
     var url = "http://116.108.44.227/";
@@ -529,7 +566,8 @@ async function join_group_req(group_id) {
         }
     });
 }
-async function undo_req(group_id) {var url = "http://116.108.44.227/";
+async function undo_req(group_id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/DeleteJoinReq",
         type: 'DELETE',
@@ -546,7 +584,8 @@ async function undo_req(group_id) {var url = "http://116.108.44.227/";
         }
     });
 }
-async function join_group(req_id) {var url = "http://116.108.44.227/";
+async function join_group(req_id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/NewMember/" + req_id,
         type: 'POST',
@@ -561,7 +600,8 @@ async function join_group(req_id) {var url = "http://116.108.44.227/";
         }
     });
 }
-async function leave_group(group_id) {var url = "http://116.108.44.227/";
+async function leave_group(group_id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/LeaveGroup",
         type: 'DELETE',
@@ -580,7 +620,8 @@ async function leave_group(group_id) {var url = "http://116.108.44.227/";
 }
 
 //post_group
-async function delete_post_group(id) {var url = "http://116.108.44.227/";
+async function delete_post_group(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/DeletePost/" + id,
         type: 'DELETE',
@@ -594,7 +635,8 @@ async function delete_post_group(id) {var url = "http://116.108.44.227/";
         }
     });
 }
-async function heart_group(id) {var url = "http://116.108.44.227/";
+async function heart_group(id) {
+    var url = "http://116.108.44.227/";
     if (document.getElementById(id + '-heart').classList.contains('fa-solid') == false) {
         $.ajax({
             url: url + "Groups/NewLike",
@@ -632,7 +674,8 @@ async function heart_group(id) {var url = "http://116.108.44.227/";
         });
     }
 }
-async function new_cmt_group(postId) {var url = "http://116.108.44.227/";
+async function new_cmt_group(postId) {
+    var url = "http://116.108.44.227/";
     var content = document.getElementById("cmt_" + postId).value;
     var img = document.getElementById("user_img").src;
     var name = document.getElementById("user_name").textContent;
@@ -668,7 +711,8 @@ async function new_cmt_group(postId) {var url = "http://116.108.44.227/";
 }
 
 //Share
-async function share(id) {var url = "http://116.108.44.227/";
+async function share(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/NewShare",
         type: 'POST',
@@ -685,7 +729,8 @@ async function share(id) {var url = "http://116.108.44.227/";
         }
     });
 }
-async function group_share(postId, groupId) {var url = "http://116.108.44.227/";
+async function group_share(postId, groupId) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Groups/NewShare",
         type: 'POST',
@@ -719,7 +764,8 @@ async function un_share(id) {//tạo div mới lam vs group luon
 }
 
 //Notify
-async function deleteNotify(id) {var url = "http://116.108.44.227/";
+async function deleteNotify(id) {
+    var url = "http://116.108.44.227/";
     $.ajax({
         url: url + "Newsfeed/XoaNotify/" + id,
         type: 'DELETE',
@@ -735,7 +781,8 @@ async function deleteNotify(id) {var url = "http://116.108.44.227/";
 }
 
 //Chat 
-async function send_mess() {var url = "http://116.108.44.227/";
+async function send_mess() {
+    var url = "http://116.108.44.227/";
     const mess = document.getElementById('message');
     if (mess.value == '') {
         alert('Đã có lỗi xảy ra !!!');

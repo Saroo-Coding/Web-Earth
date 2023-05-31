@@ -9,7 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-    <link rel="shortcut icon" href="{{ asset('img/logo-E.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logo-E.png" type="image/x-icon">
+    {{-- <link rel="shortcut icon" href="{{ asset('img/logo-E.png') }}" type="image/x-icon"> --}}
     <title>Earth</title>
 </head>
 
@@ -58,7 +59,8 @@
             </script>
         </div>
     </div>
-    <script src="{{ asset('assets/js/login.js') }}"></script>
+    <script src="assets/js/login.js"></script>
+    {{-- <script src="{{ asset('assets/js/login.js') }}"></script> --}}
 </body>
 
 </html>

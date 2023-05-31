@@ -41,6 +41,7 @@
     <script src="{{ asset('assets/js/image.js') }}"></script>
     <script src="{{ asset('assets/js/introdu.js') }}"></script>
     <script src="{{ asset('assets/js/seach.js') }}"></script>
+    <script src="test/node_modules/node-nlp/src/index.js"></script>
 </body>
 
 </html>
